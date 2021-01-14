@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "Pages"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "OTA"
+	}
+}
