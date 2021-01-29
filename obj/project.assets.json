@@ -13,19 +13,21 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Earth Jan\\Documents\\csharp files\\csharp codes\\OTA\\OTA.csproj",
+      "projectUniqueName": "C:\\Users\\Earth Jan\\Documents\\Git\\Repos\\online-travel-agency\\OTA.csproj",
       "projectName": "OTA",
-      "projectPath": "C:\\Users\\Earth Jan\\Documents\\csharp files\\csharp codes\\OTA\\OTA.csproj",
+      "projectPath": "C:\\Users\\Earth Jan\\Documents\\Git\\Repos\\online-travel-agency\\OTA.csproj",
       "packagesPath": "C:\\Users\\Earth Jan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Earth Jan\\Documents\\csharp files\\csharp codes\\OTA\\obj\\",
+      "outputPath": "C:\\Users\\Earth Jan\\Documents\\Git\\Repos\\online-travel-agency\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Earth Jan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Earth Jan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

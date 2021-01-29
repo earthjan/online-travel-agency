@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Users\\Earth Jan\\Documents\\csharp files\\csharp codes\\OTA\\OTA.csproj",
+  "FilePath": "c:\\Users\\Earth Jan\\Documents\\Git\\Repos\\online-travel-agency\\OTA.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "5.0",
@@ -15603,22 +15603,22 @@
   "RootNamespace": "OTA",
   "Documents": [
     {
-      "FilePath": "c:\\Users\\Earth Jan\\Documents\\csharp files\\csharp codes\\OTA\\Pages\\Travel\\landingpage.cshtml",
-      "TargetPath": "Pages\\Travel\\landingpage.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Earth Jan\\Documents\\csharp files\\csharp codes\\OTA\\Pages\\index.cshtml",
+      "FilePath": "c:\\Users\\Earth Jan\\Documents\\Git\\Repos\\online-travel-agency\\Pages\\index.cshtml",
       "TargetPath": "Pages\\index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Earth Jan\\Documents\\csharp files\\csharp codes\\OTA\\Pages\\Shared\\_Layout.cshtml",
+      "FilePath": "c:\\Users\\Earth Jan\\Documents\\Git\\Repos\\online-travel-agency\\Pages\\Shared\\_Layout.cshtml",
       "TargetPath": "Pages\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Earth Jan\\Documents\\csharp files\\csharp codes\\OTA\\Pages\\_ViewStart.cshtml",
+      "FilePath": "c:\\Users\\Earth Jan\\Documents\\Git\\Repos\\online-travel-agency\\Pages\\Travel\\landingpage.cshtml",
+      "TargetPath": "Pages\\Travel\\landingpage.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Earth Jan\\Documents\\Git\\Repos\\online-travel-agency\\Pages\\_ViewStart.cshtml",
       "TargetPath": "Pages\\_ViewStart.cshtml",
       "FileKind": "mvc"
     }
