@@ -73,3 +73,4 @@ C:\Users\Earth Jan\Documents\Git\Repos\online-travel-agency\obj\Debug\net5.0\OTA
 C:\Users\Earth Jan\Documents\Git\Repos\online-travel-agency\obj\Debug\net5.0\OTA.genruntimeconfig.cache
 C:\Users\Earth Jan\Documents\Git\Repos\online-travel-agency\obj\Debug\net5.0\OTA.csproj.CopyComplete
 C:\Users\Earth Jan\Documents\Git\Repos\online-travel-agency\obj\Debug\net5.0\Razor\Pages\Travel\SecondProcess.cshtml.g.cs
+C:\Users\Earth Jan\Documents\Git\Repos\online-travel-agency\obj\Debug\net5.0\Razor\Pages\Shared\_LayoutTravel.cshtml.g.cs

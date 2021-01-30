@@ -15,6 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+   
     "OTA": {
       "commandName": "Project",
       "dotnetRunMessages": "true",

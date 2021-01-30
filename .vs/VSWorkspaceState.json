@@ -1,10 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\bin\\Debug",
-    "\\bin\\Release",
-    "\\Pages\\Travel"
+    "\\Pages",
+    "\\Pages\\Shared",
+    "\\Pages\\Travel",
+    "\\Properties"
   ],
-  "SelectedNode": "\\obj",
+  "SelectedNode": "\\OTA.csproj",
   "PreviewInSolutionExplorer": false
 }
