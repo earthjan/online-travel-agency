@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
 namespace OTA.Pages
 {
-    public class SecondProcess
+    public class SecondProcessPageModel : PageModel
     {
-
+        
     }
 }
