@@ -15603,6 +15603,11 @@
   "RootNamespace": "OTA",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\Earth Jan\\Documents\\Git\\Repos\\online-travel-agency\\Pages\\Travel\\SecondProcess.cshtml",
+      "TargetPath": "Pages\\Travel\\SecondProcess.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Earth Jan\\Documents\\Git\\Repos\\online-travel-agency\\Pages\\index.cshtml",
       "TargetPath": "Pages\\index.cshtml",
       "FileKind": "mvc"
