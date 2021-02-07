@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System;
 using OTA.Classes;
+using Microsoft.AspNetCore.Mvc;
 
 namespace OTA.Pages
 {
@@ -26,5 +27,8 @@ namespace OTA.Pages
 
             Background = "../misc/images/as_backgrounds/japan.jpg";
         }
+
+        public IActionResult OnGetPartial() =>
+            Partial("../Shared/sample.cshtml");
     }
 }

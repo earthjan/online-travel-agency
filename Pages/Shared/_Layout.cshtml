@@ -60,7 +60,7 @@
 
     @RenderBody()
 
-    <footer class="container-fluid d-sm-flex align-items-sm-center justify-content-sm-around my-3 py-md-5 border">
+    <footer class="container-fluid d-sm-flex align-items-sm-center justify-content-sm-around mt-3 py-md-5 border">
         <!-- Brand name and social media -->
         <section>
             <div class="row row-cols-1 gy-3">
@@ -98,15 +98,6 @@
             </div>
         </section>
     </footer> 
-
-    @if (IsSectionDefined("ModalNumberOfPassengerAndbags"))
-    {
-        
-    }
-    else {
-        
-    }
-    @RenderSection("ModalNumberOfPassengerAndbags", false);
 
       <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"

@@ -15608,11 +15608,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Earth Jan\\Documents\\Git\\Repos\\online-travel-agency\\Pages\\Shared\\_LayoutTravel.cshtml",
-      "TargetPath": "Pages\\Shared\\_LayoutTravel.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\Earth Jan\\Documents\\Git\\Repos\\online-travel-agency\\Pages\\index.cshtml",
       "TargetPath": "Pages\\index.cshtml",
       "FileKind": "mvc"
