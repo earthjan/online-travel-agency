@@ -1,0 +1,379 @@
+<!doctype html><!-- REMOVE THIS -->
+<html lang="en">
+<!-- REMOVE THIS -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Font-icon's style CSS -->
+    <link rel="stylesheet" href="css/font_icons.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <title>@ViewData["Title"]</title>
+</head>
+
+<body>
+    <!-- REMOVE THIS -->
+
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light border py-4">
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand fw-bold fs-2 ms-sm-1 ms-md-2 ms-lg-3 ms-xl-4 ms-xxl-5">
+                    <span class="text-primary-cs">OTA NAME</span>
+                </a>
+
+                <!-- Toggle-collapse button -->
+                <button class="navbar-toggler border" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navigations">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navigation links -->
+                <div class="collapse navbar-collapse justify-content-end" id="navigations">
+                    <div class="navbar-nav">
+                        <a class="nav-link active fw-bold mx-sm-1 mx-md-2 mx-lg-3 mx-xl-4 mx-xxl-5" href="#">Travel</a>
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle mx-sm-1 mx-md-2 mx-lg-3 mx-xl-4 mx-xxl-5" href="#"
+                                data-bs-toggle="dropdown">PHP ₱</a>
+
+                            <ul class="dropdown-menu">
+                                @* To be logical, the currency is PHP only to focus on what matters that is
+                                to use a DB. *@
+                                <li><a class="dropdown-item active bg-secondary" href="#">PHP ₱</a></li>
+                                @* <li><a class="dropdown-item" href="#">USD $</a></li>
+                                <li><a class="dropdown-item" href="#">EUR €</a></li>
+                                <li><a class="dropdown-item" href="#">GBP £</a></li> *@
+                            </ul>
+                        </div>
+                        <a class="nav-link nav-item text-primary btn
+                            mx-sm-1 mx-md-2 mx-lg-3 mx-xl-4 mx-xxl-5 px-md-3
+                            rounded-pill border-1 border-primary-cs" href="#">
+                            <span class="text-primary-cs">Sign in</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <form action="" method="POST" class="d-flex flex-column border border-primary">
+            <!-- Title --> 
+            <div class="border border-success">
+                <span class="my-icon-arrow"></span>
+            </div>
+            <!-- Flight details -->
+            <div class="d-flex border border-success">
+                 <!-- The flight result -->
+                <div class="border rounded-3 py-3">
+                    <div class="row row-cols-1 row-cols-lg-2">
+                        <!-- Flight Details -->
+                        <div class="col col-lg-9">
+                            <div class="row row-cols-1">
+                                <!-- Departure -->
+                                <div class="col border-bottom">
+                                    <!-- Departure title -->
+                                    <div class="row justify-content-center pb-3">
+                                        <div class="col-5 px-0">
+                                            <h6 class="text-end">Departure</h6>
+                                        </div>
+                                        <div class="col-2 px-0 d-flex justify-content-center">
+                                            <h6>:</h6>
+                                        </div>
+                                        <div class="col-5 px-0 d-flex">
+                                            <h6 class="align-self-stretch border border-dark rounded-pill px-1 my-0">
+                                                2 stops</h6>
+                                        </div>
+                                    </div>
+                                    <!-- Departure schedule -->
+                                    <div class="row row-cols-3">
+                                        <!-- From schedule -->
+                                        <div class="col d-flex justify-content-center">
+                                            <div class="row row-cols-auto flex-column">
+                                                <!-- Day and date -->
+                                                <div class="col">
+                                                    <h6 class="fw-bold mb-0">Mon Jan 1</h6>
+                                                </div>
+                                                <!-- Time -->
+                                                <div class="col">
+                                                    <h6>9:00 PM</h6>
+                                                </div>
+                                                <!-- Location -->
+                                                <div class="col py-3">
+                                                    <h6><span class="fw-bold">Manila</span> <span
+                                                            class="text-secondary">MNL</span></h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Flight duration -->
+                                        <div class="col d-flex flex-column justify-content-center align-items-center">
+                                            <span class="fs-1 my-icon-from_to_flight"></span>
+                                            <span>27h 10m</span>
+                                        </div>
+                                        <!-- To schedule -->
+                                        <div class="col d-flex justify-content-center">
+                                            <div class="row row-cols-auto flex-column">
+                                                <!-- Day and date -->
+                                                <div class="col">
+                                                    <h6 class="fw-bold mb-0">Mon Jan 1</h6>
+                                                </div>
+                                                <!-- Time -->
+                                                <div class="col">
+                                                    <h6>9:00 PM</h6>
+                                                </div>
+                                                <!-- Location -->
+                                                <div class="col py-3">
+                                                    <h6><span class="fw-bold">Manila</span> <span
+                                                            class="text-secondary">MNL</span></h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Arrival -->
+                                <div class="col pt-3 border-bottom">
+                                    <!-- Arrival title -->
+                                    <div class="row justify-content-center pb-3">
+                                        <div class="col-5 px-0">
+                                            <h6 class="text-end">Arrival</h6>
+                                        </div>
+                                        <div class="col-2 px-0 d-flex justify-content-center">
+                                            <h6>:</h6>
+                                        </div>
+                                        <div class="col-5 px-0 d-flex">
+                                            <h6 class="align-self-stretch border border-dark rounded-pill px-1 my-0">
+                                                2 stops</h6>
+                                        </div>
+                                    </div>
+                                    <!-- Arrival schedule -->
+                                    <div class="row row-cols-3 border-primary">
+                                        <!-- From schedule -->
+                                        <div class="col d-flex justify-content-center">
+                                            <div class="row row-cols-auto flex-column">
+                                                <!-- Day and date -->
+                                                <div class="col">
+                                                    <h6 class="fw-bold mb-0">Mon Jan 1</h6>
+                                                </div>
+                                                <!-- Time -->
+                                                <div class="col">
+                                                    <h6>9:00 PM</h6>
+                                                </div>
+                                                <!-- Location -->
+                                                <div class="col py-3">
+                                                    <h6><span class="fw-bold">Manila</span> <span
+                                                            class="text-secondary">MNL</span></h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Flight duration -->
+                                        <div class="col d-flex flex-column justify-content-center align-items-center">
+                                            <span class="fs-1 my-icon-from_to_flight"></span>
+                                            <span>27h 10m</span>
+                                        </div>
+                                        <!-- To schedule -->
+                                        <div class="col d-flex justify-content-center">
+                                            <div class="row row-cols-auto flex-column">
+                                                <!-- Day and date -->
+                                                <div class="col">
+                                                    <h6 class="fw-bold mb-0">Mon Jan 1</h6>
+                                                </div>
+                                                <!-- Time -->
+                                                <div class="col">
+                                                    <h6>9:00 PM</h6>
+                                                </div>
+                                                <!-- Location -->
+                                                <div class="col py-3">
+                                                    <h6><span class="fw-bold">Manila</span> <span
+                                                            class="text-secondary">MNL</span></h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Seat class & details -->
+                                <div class="col pt-3">
+                                    <div class="row row-cols-2">
+                                        <!-- Seat class -->
+                                        <div class="col d-flex align-items-center">
+                                            <h6 class="border border-dark rounded-pill px-1 py-1 my-0">Economy</h6>
+                                        </div>
+                                        <!-- Details -->
+                                        <div class="col d-flex justify-content-end">
+                                            <button class="btn">
+                                                <span class="my-icon-more"></span>
+                                                Show details
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+                <!-- Price -->
+                <div class="row row-cols-2 align-self-end border border-danger">
+                    <div class="col border border-warning">s</div>
+                    <div class="col border border-warning">s</div>
+                    <div class="col border border-warning">s</div>
+                    <div class="col border border-warning">s</div>
+                    <div class="col border border-warning">s</div>
+                    <div class="col border border-warning">s</div>
+                    <div class="col border border-warning">s</div>
+                    <div class="col border border-warning">s</div>
+                </div>
+            </div>
+            <!-- Contact forms -->
+            <div class="border border-success">
+                <div class="border rounded-3 container-fluid">
+                    <div>Contact details</div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="your@email.com">
+                    <div class="input-group flex-nowrap justify-content-center">
+                        <span
+                            class="input-group-text border-end-0 border-secondary rounded-start bg-white text-black-50">Departure</span>
+                        <input class="border-start-0 border-1 border-secondary rounded-end bg-white"
+                            type="datetime-local" id="departure-datetime">
+                    </div>
+                </div>
+            </div>
+            <!-- Passenger forms -->
+            <div class="border border-success"> <!-- dynamic section based on the number of booking passenger of a service. -->
+                
+            </div>
+            <!-- Submit button -->
+            <div class="border border-success">
+                
+            </div>
+        </form>
+    </main>
+    <div class="container border border-primary">
+        <div class="row row-cols-2">
+            <!-- Passenger forms -->
+            <div class="w-100 border border-secondary fw-bold">
+                Passenger
+            </div>
+            <div class="col border border-secondary d-flex flex-column">
+                <label for="given_names">Given names</label>
+                <input type="text" id="given_names" placeholder="e.g. Oliver James">
+            </div>
+            <div class="col border border-secondary d-flex flex-column">
+                <label for="surnames">Surnames</label>
+                <input type="text" id="surnames" placeholder="e.g. Brown">
+            </div>
+            <div class="col border border-secondary d-flex">
+                <div class="d-flex flex-column flex-grow-1">
+                    <label for="nationality">Nationality</label>
+                    <input type="text" id="nationality" placeholder="e.g. Filipino">
+                </div>
+                <div  class="d-flex flex-column border border-success flex-grow-1">
+                    <label for="gender">Gender</label>
+                    <select class="flex-fill" id="gender">
+                        <option class="selected">Select</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col border border-secondary d-flex flex-column">
+                <label for="date_of_birth">Date of birth</label>
+                <input type="date" id="date_of_birth">
+            </div>
+            <div class="col border border-secondary d-flex flex-column">
+                <label for="passport_or_id_number">Passport or ID number</label>
+                <input type="number" id="passport_or_id_number" placeholder="Passport or ID number">
+            </div>
+            <div class="col border border-secondary d-flex flex-column">
+                <label for="passport_or_id_expiry_date">Passport or ID expiry date</label>
+                <input type="date" id="passport_or_id_expiry_date">
+            </div>
+            <!-- Baggage details -->
+            <div class="w-100 border-top border-secondary fw-bold">
+                Cabin and checked baggage
+            </div>
+            <div class="col border border-secondary d-flex flex-column">
+                <span>Cabin bag</span>
+                <div class="d-flex justify-content-between">
+                    <span>
+                        <span class="my-icon-cabin_bag fs-4"></span>
+                        2x <!-- dynamic value  -->
+                    </span>
+                    <span>
+                        55 x 20 x 40 cm, 7 kg
+                    </span>
+                </div>
+            </div>
+            <div class="col border border-secondary d-flex flex-column">
+                <span>Checked bag</span>
+                <div class="d-flex justify-content-between">
+                    <span>
+                        <span class="my-icon-checked_bag fs-4"></span>
+                        2x <!-- dynamic value  -->
+                    </span>
+                    <span>
+                        78 x 28 x 52 cm, 23 kg
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <footer class="container-fluid d-sm-flex align-items-sm-center justify-content-sm-around mt-3 py-md-5 border">
+        <!-- REMOVE THIS -->
+        <!-- Brand name and social media -->
+        <section>
+            <div class="row row-cols-1 gy-3">
+                <div class="col text-center fs-1 fw-bold text-primary-cs">
+                    OTA Name
+                </div>
+                <div class="col d-flex justify-content-center px-5 px-md-1">
+                    <a href="" class="my-icon-instagram_1 fs-1 text-primary-cs text-decoration-none"></a>
+                    <a href="" class="my-icon-twitter_1 fs-1 text-primary-cs text-decoration-none px-3"></a>
+                    <a href="" class="my-icon-linkedin_1 fs-1 text-primary-cs text-decoration-none pe-3"></a>
+                    <a href="" class="my-icon-facebook_1 fs-1 text-primary-cs text-decoration-none"></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company platform features -->
+        <section
+            class="d-flex flex-column flex-sm-row align-items-stretch justify-content-sm-around me-sm-3 flex-sm-grow-1">
+            <div class="d-flex flex-column align-items-center align-items-sm-start mt-4 mt-sm-2">
+                <div class="fw-bold fs-5">Company</div>
+                <div><a class="text-decoration-underline text-dark" href="#">Terms & Condtion</a></div>
+                <div class="my-2"><a class="text-decoration-underline text-dark" href="#">Terms of Use</a></div>
+                <div><a class="text-decoration-underline text-dark" href="#">Privacy policy</a></div>
+            </div>
+
+            <div class="d-flex flex-column align-items-center align-items-sm-start mt-2 mt-sm-2 mx-sm-3 mx-md-0">
+                <div class="fw-bold fs-5">Platform</div>
+                <div><a class="text-decoration-underline text-dark" href="#">About</a></div>
+                <div class="mt-2"><a class="text-decoration-underline text-dark" href="#">People</a></div>
+            </div>
+
+            <div class="d-flex flex-column align-items-center align-items-sm-start mt-2 mt-sm-2">
+                <div class="fw-bold fs-5">Features</div>
+                <div><a class="text-decoration-underline text-dark" href="#">Sign in</a></div>
+                <div class="mt-2"><a class="text-decoration-underline text-dark" href="#">Register</a></div>
+            </div>
+        </section>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+    <script src="custom.js"></script>
+
+</body>
+
+</html>
