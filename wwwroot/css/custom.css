@@ -296,7 +296,40 @@ p { display:block; background:#eee; }
     height: 100%;
   }
 }
+@media (min-width: 0px)
+{
+  .my-fs-smaller {
+    font-size: smaller;
+  }
 
+  .my-fs-xxsmall {
+    font-size: xx-small;
+  }
+
+  .my-fs-small {
+    font-size: small;
+  }
+
+  .my-fs-medium {
+    font-size: medium;
+  }
+
+  .my-fs-large {
+    font-size: large;
+  }
+
+  .my-fs-larger {
+    font-size: larger;
+  }
+
+  .my-fs-xlarge {
+    font-size: x-large;
+  }
+
+  .my-fs-xxlarge {
+    font-size: xx-large;
+  }
+}
 @media (min-width: 576px) {
   .h-px-sm-200 {
     height: 200px;

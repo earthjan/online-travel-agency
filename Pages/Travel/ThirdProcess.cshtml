@@ -1,0 +1,325 @@
+@page
+@model OTA.Pages.ThirdProcessPageModel
+
+<main class="container-fluid">
+    <form action="#" method="GET" class="row row-cols-1 justify-content-center">
+        <!-- Title -->
+        <div class="col py-3 pt-lg-5 col-lg-9">
+            <div class="container-sm">
+                <span class="my-fs-xxlarge fw-bold">Manila</span> <!-- dynamic value -->
+                <span class="my-fs-xxlarge">→</span>
+                <span class="my-fs-xxlarge fw-bold">Tokyo and back</span> <!-- "tokyo" is a dynamic value -->
+            </div>
+        </div>
+        <!-- Flight details -->
+        <div class="col d-flex flex-column flex-md-row col-lg-9">
+            <!-- Flight details -->
+            <div class="container border rounded-3 py-3">
+                <div class="row row-cols-1">
+                    <!-- Departure -->
+                    <div class="col border-bottom">
+                        <!-- Departure title -->
+                        <div class="row justify-content-center pb-3">
+                            <div class="col-5 px-0">
+                                <h6 class="text-end">Departure</h6>
+                            </div>
+                            <div class="col-2 px-0 d-flex justify-content-center">
+                                <h6>:</h6>
+                            </div>
+                            <div class="col-5 px-0 d-flex">
+                                <h6 class="align-self-stretch border border-dark rounded-pill px-1 my-0">
+                                    2 stops</h6>
+                            </div>
+                        </div>
+                        <!-- Departure schedule -->
+                        <div class="row row-cols-3">
+                            <!-- From schedule -->
+                            <div class="col d-flex justify-content-center">
+                                <div class="row row-cols-auto flex-column">
+                                    <!-- Day and date -->
+                                    <div class="col">
+                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>
+                                    </div>
+                                    <!-- Time -->
+                                    <div class="col">
+                                        <h6>9:00 PM</h6>
+                                    </div>
+                                    <!-- Location -->
+                                    <div class="col py-3">
+                                        <h6><span class="fw-bold">Manila</span> <span class="text-secondary">MNL</span>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Flight duration -->
+                            <div class="col d-flex flex-column justify-content-center align-items-center">
+                                <span class="fs-1 my-icon-from_to_flight"></span>
+                                <span>27h 10m</span>
+                            </div>
+                            <!-- To schedule -->
+                            <div class="col d-flex justify-content-center">
+                                <div class="row row-cols-auto flex-column">
+                                    <!-- Day and date -->
+                                    <div class="col">
+                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>
+                                    </div>
+                                    <!-- Time -->
+                                    <div class="col">
+                                        <h6>9:00 PM</h6>
+                                    </div>
+                                    <!-- Location -->
+                                    <div class="col py-3">
+                                        <h6><span class="fw-bold">Manila</span> <span class="text-secondary">MNL</span>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Arrival -->
+                    <div class="col pt-3 border-bottom">
+                        <!-- Arrival title -->
+                        <div class="row justify-content-center pb-3">
+                            <div class="col-5 px-0">
+                                <h6 class="text-end">Arrival</h6>
+                            </div>
+                            <div class="col-2 px-0 d-flex justify-content-center">
+                                <h6>:</h6>
+                            </div>
+                            <div class="col-5 px-0 d-flex">
+                                <h6 class="align-self-stretch border border-dark rounded-pill px-1 my-0">
+                                    2 stops</h6>
+                            </div>
+                        </div>
+                        <!-- Arrival schedule -->
+                        <div class="row row-cols-3 border-primary">
+                            <!-- From schedule -->
+                            <div class="col d-flex justify-content-center">
+                                <div class="row row-cols-auto flex-column">
+                                    <!-- Day and date -->
+                                    <div class="col">
+                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>
+                                    </div>
+                                    <!-- Time -->
+                                    <div class="col">
+                                        <h6>9:00 PM</h6>
+                                    </div>
+                                    <!-- Location -->
+                                    <div class="col py-3">
+                                        <h6><span class="fw-bold">Manila</span> <span class="text-secondary">MNL</span>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Flight duration -->
+                            <div class="col d-flex flex-column justify-content-center align-items-center">
+                                <span class="fs-1 my-icon-from_to_flight"></span>
+                                <span>27h 10m</span>
+                            </div>
+                            <!-- To schedule -->
+                            <div class="col d-flex justify-content-center">
+                                <div class="row row-cols-auto flex-column">
+                                    <!-- Day and date -->
+                                    <div class="col">
+                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>
+                                    </div>
+                                    <!-- Time -->
+                                    <div class="col">
+                                        <h6>9:00 PM</h6>
+                                    </div>
+                                    <!-- Location -->
+                                    <div class="col py-3">
+                                        <h6><span class="fw-bold">Manila</span> <span class="text-secondary">MNL</span>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Seat class & details -->
+                    <div class="col pt-3">
+                        <div class="row row-cols-2">
+                            <!-- Seat class -->
+                            <div class="col d-flex align-items-center">
+                                <h6 class="border border-dark rounded-pill px-1 py-1 my-0">Economy</h6>
+                            </div>
+                            <!-- Details -->
+                            <!-- There's no time to do this extra. -->
+                            <!-- <div class="col d-flex justify-content-end">
+                                    <button class="btn">
+                                        <span class="my-icon-more"></span>
+                                        Show details
+                                    </button>
+                                </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Price -->
+            <div class="container align-self-end flex-grow-1">
+                <div class="row row-cols-2 gy-3">
+                    <!-- this pricing details/values are determined by an object containing the pricing details/values. -->
+                    <div class="col">2x Adult</div> <!-- dynamic value -->
+                    <div class="col text-end">₱ 99.99</div> <!-- dynamic value -->
+                    <div class="col">2x Child</div> <!-- dynamic value -->
+                    <div class="col text-end">₱ 99.99</div> <!-- dynamic value -->
+                    <div class="col">2x Infant</div> <!-- dynamic value -->
+                    <div class="col text-end">₱ 99.99</div> <!-- dynamic value -->
+                    <div class="col">Total (PHP)</div>
+                    <div class="col text-end my-fs-xlarge">₱ 99.99</div>
+                    <!-- dynamic value -->
+                </div>
+            </div>
+        </div>
+        <!-- Contact forms -->
+        <div class="col col-lg-9">
+            <div class="container mt-5 border rounded-3 py-4 d-lg-flex justify-content-lg-center">
+                <div class="col-lg-9">
+                    <div class="text-center fw-bold">Contact details</div>
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-control" type="email" id="email" placeholder="your@email.com" name="email">
+                    <label for="phone">Phone</label>
+                    <div class="input-group flex-nowrap justify-content-center">
+                        <span class="input-group-text border-end-0 rounded-start bg-white text-black-50">PH
+                            +63</span>
+                        <input class="form-control border border-1 rounded-end bg-white" type="tel" id="phone"
+                            name="phone">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Passenger forms -->
+        @for (int i = 0; i < 2; i++)
+        {
+            <div class="col col-lg-9">
+                <div class="container border rounded-3 mt-3 py-4">
+                    <!-- dynamic section based on the number of booking passenger of a service. -->
+                    <div class="row row-cols-1 row-cols-sm-2">
+                        <!-- Passenger forms -->
+                        <div class="w-100 fw-bold">
+                            Passenger
+                        </div>
+                        <div class="col d-flex flex-column">
+                            <label class="form-label" for="given_names">Given names</label>
+                            <input class="form-control" type="text" id="given_names" placeholder="e.g. Oliver James"
+                                name="given_name" required>
+                        </div>
+                        <div class="col d-flex flex-column">
+                            <label class="form-label" for="surnames">Surnames</label>
+                            <input class="form-control" type="text" id="surnames" placeholder="e.g. Brown" name="surname"
+                                required>
+                        </div>
+                        <div class="col d-flex">
+                            <div class="d-flex flex-column flex-grow-1">
+                                <label class="form-label" for="nationality">Nationality</label>
+                                <input class="form-control" type="text" id="nationality" placeholder="e.g. Filipino"
+                                    name="nationality" required>
+                            </div>
+                            <div class="d-flex flex-column flex-grow-1">
+                                <label class="form-label" for="gender">Gender</label>
+                                <select class="form-select flex-fill" id="gender" name="gender" required>
+                                    <option class="selected">Male</option>
+                                    <option>Female</option>
+                                    <option>Others</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col d-flex flex-column">
+                            <label class="form-label" for="date_of_birth">Date of birth</label>
+                            <input class="form-control" type="date" id="date_of_birth" name="date_of_birth" required>
+                        </div>
+                        <div class="col d-flex flex-column">
+                            <label class="form-label" for="passport_or_id_number">Passport or ID number</label>
+                            <input class="form-control" type="number" id="passport_or_id_number"
+                                placeholder="Passport or ID number" name="passport_or_id_number" required>
+                        </div>
+                        <div class="col d-flex flex-column">
+                            <label class="form-label" for="passport_or_id_expiry_date"
+                                id="passport_or_id_expiry_form">Passport or ID expiry
+                                date</label>
+                            <input class="form-control" type="date" id="passport_or_id_expiry_date"
+                                name="passport_or_id_expiry_date" required>
+                            <div class="d-flex">
+                                <input class="me-2 form-check-input" type="checkbox" id="no_expiry_date"
+                                    name="no_expiry_date">
+                                <label for="no_expiry_date">No expiry date</label>
+                            </div>
+                        </div>
+                        <!-- Baggage forms -->
+                        <div class="w-100 py-2 border-top fw-bold mt-4">
+                            Cabin and checked baggage
+                        </div>
+                        <div class="col d-flex flex-column">
+                            <span>Cabin bag</span>
+                            <span class="my-fs-small text-black-50">The max number is 2</span>
+                            <div class="row gy-2 px-3 py-2 border rounded-3 mt-1">
+                                <div class="col-12 d-flex justify-content-center align-items-center col-md-3">
+                                    <span class="my-icon-cabin_bag fs-5"></span>
+                                </div>
+                                <div class="col-4 col-sm-auto d-flex justify-content-end justify-content-sm-end ">
+                                    <button class="btn border bg-light rounded" style="width: 45px;" id="btn_dec_cabin_bag"
+                                        type="button"
+                                        onclick="decrement('cabin_bag', 'btn_dec_cabin_bag', 'btn_inc_cabin_bag', 0)"> -
+                                    </button>
+                                </div>
+                                <div class="col-4 col-md-3 col-xl-2">
+                                    <input type="number" class="form-control bg-white" id="cabin_bag" name="DYNAMIC VALUE"
+                                        value="0" readonly>
+                                </div>
+                                <div class="col-4 col-sm-auto d-flex justify-content-start justify-content-sm-start">
+                                    <button class="btn border bg-light rounded" style="width: 45px;" id="btn_inc_cabin_bag"
+                                        type="button"
+                                        onclick="increment('cabin_bag', 'btn_dec_cabin_bag', 'btn_inc_cabin_bag', 2)"> +
+                                    </button>
+                                </div>
+                                <div class="col text-center col-xl-12">
+                                    <span>
+                                        55 x 20 x 40 cm, 7 kg
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col d-flex flex-column">
+                            <span>Checked bag</span>
+                            <span class="my-fs-small text-black-50">The max number is 1</span>
+                            <div class="row gy-2 px-3 py-2 border rounded-3 mt-1">
+                                <div class="col-12 d-flex justify-content-center align-items-center col-md-3">
+                                    <span class="my-icon-checked_bag fs-5"></span>
+                                </div>
+                                <div class="col-4 col-sm-auto d-flex justify-content-end justify-content-sm-end ">
+                                    <button class="btn border bg-light rounded" style="width: 45px;"
+                                        id="btn_dec_checked_bag" type="button"
+                                        onclick="decrement('checked_bag', 'btn_dec_checked_bag', 'btn_inc_checked_bag', 0)">
+                                        - </button>
+                                </div>
+                                <div class="col-4 col-md-3 col-xl-2">
+                                    <input type="number" class="form-control bg-white" id="checked_bag" name="DYNAMIC VALUE"
+                                        value="0" readonly>
+                                </div>
+                                <div class="col-4 col-sm-auto d-flex justify-content-start justify-content-sm-start">
+                                    <button class="btn border bg-light rounded" style="width: 45px;"
+                                        id="btn_inc_checked_bag" type="button"
+                                        onclick="increment('checked_bag', 'btn_dec_checked_bag', 'btn_inc_checked_bag', 1)">
+                                        + </button>
+                                </div>
+                                <div class="col text-center col-xl-12">
+                                    <span>
+                                        78 x 28 x 52 cm, 23 kg
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <!-- Submit button -->
+        <div class="col col-lg-9">
+            <div class="d-flex mt-3">
+                <button class="btn border rounded bg-secondary-cs text-white flex-fill" type="submit">
+                    Continue
+                </button>
+            </div>
+        </div>
+    </form>
+</main>
