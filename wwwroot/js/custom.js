@@ -1,15 +1,21 @@
 "use strict";
-// "2017-06-01T08:30"
-
-let d = new Date();
-// yyyy-mm-ddThh:mm
-let min = d.getFullYear() + 
-    "-" + d.getMonth()    + 
-    "-" + d.getDate()     + 
-    "T" + d.getHours()    + 
-    ":" + d.getMinutes();
-
 // document.getElementById("departure-datetime").min = min;
+
+// Formats the date object into "yyyy-mm-ddThh:mm" format.
+function formatDate(dateObject) {
+    let newFormat = dateObject.getFullYear() +
+            "-" + dateObject.getMonth() +
+            "-" + dateObject.getDate() +
+            "T" + dateObject.getHours() +
+            ":" + dateObject.getMinutes(); 
+    return newFormat;   
+}
+
+// Gets next week from the current date and time
+function getNextWeek() {
+    let now = new Date();
+    return new Date(firstDay.getTime() + 7 * 24 * 60 * 60 * 1000);
+}
 
 // Gets the input values from the Modal, and passes
 // to the form inputs for flight query.
@@ -19,11 +25,11 @@ function modalInputValues() {
     let adult = getInputValue("adult_modal"),
         child = getInputValue("child_modal"),
         infant = getInputValue("infant_modal");
-        // cabin_bag = getInputValue("cabin_bag_modal"),
-        // checked_bag = getInputValue("checked_bag_modal");
-    
+    // cabin_bag = getInputValue("cabin_bag_modal"),
+    // checked_bag = getInputValue("checked_bag_modal");
+
     let passengerSum = Number(adult) + Number(child) + Number(infant);
-        //bagSum = Number(cabin_bag) + Number(checked_bag);
+    //bagSum = Number(cabin_bag) + Number(checked_bag);
 
     setInputValue("adult", adult);
     setInputValue("child", child);
@@ -53,26 +59,26 @@ function setElementText(id, value) {
 // Increments the "number" type form control up to 5. 
 // Beyond 5, the button is disabled.
 function increment(formControlID, btnDecID, btnIncID, max) {
-    let formControl = Number( getInputValue(formControlID) );
+    let formControl = Number(getInputValue(formControlID));
     document.getElementById(btnDecID).disabled = false;
 
-    if (formControl > max-1) {
+    if (formControl > max - 1) {
         document.getElementById(btnIncID).disabled = true;
     } else {
-        setInputValue(formControlID, formControl+1);
+        setInputValue(formControlID, formControl + 1);
     }
 }
 
 // Decrements the "number" type form control up to 0. 
 // Less than 0, the button is disabled.
 function decrement(formControlID, btnDecID, btnIncID, min) {
-    let formControl = Number( getInputValue(formControlID) );
+    let formControl = Number(getInputValue(formControlID));
     document.getElementById(btnIncID).disabled = false;
 
-    if (formControl < min+1) {
+    if (formControl < min + 1) {
         document.getElementById(btnDecID).disabled = true;
     } else {
-        setInputValue(formControlID, formControl-1);
+        setInputValue(formControlID, formControl - 1);
     }
 }
 
@@ -81,7 +87,7 @@ function decrement(formControlID, btnDecID, btnIncID, min) {
 // hasExpiryID is the date form that indicates the password's expiration date.
 // noExpiryID is the checkbox form that indicates the password's no expiration.
 function validatePassIDExpiry(hasExpiryID, noExpiryID) {
-    let hasExpiry = ( getInputValue(hasExpiryID) != "" ),
+    let hasExpiry = (getInputValue(hasExpiryID) != ""),
         noExpiry = document.getElementById(noExpiryID).checked;
 
     if (hasExpiry) {
@@ -89,4 +95,12 @@ function validatePassIDExpiry(hasExpiryID, noExpiryID) {
     } else if (noExpiry) {
         document.getElementById(hasExpiryID).required = false;
     }
+}
+
+// Generates 6 digits code.
+// This is mainly used for the payment method.
+function generateCode(textID) {
+    let code = Math.floor(Math.random() * Math.floor(999999));
+    document.getElementById(textID).innerHTML = code;
+
 }
