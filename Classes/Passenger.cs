@@ -16,7 +16,7 @@ namespace OTA.Classes
         #warning if you have time, make this DateTime
         public string PassportOrIDExpiryDate { get; set; }
         public string Email { get; set; }
-        public int MobileNo { get; set; }
+        public string MobileNo { get; set; }
         public int CabinBagCount { get; set; }
         public int CheckedBagCount { get; set; }
 
@@ -25,7 +25,7 @@ namespace OTA.Classes
         public Passenger(string givenName, string middleName, string surname,
             string nationality, string gender, string birthDate, 
             string passportOrIDNo, string passportOrIDExpiryDate, string email,
-            int mobileNo, int cabinBagCount, int checkedBagCount)
+            string mobileNo, int cabinBagCount, int checkedBagCount)
         {
             this.GivenName = givenName;
             this.MiddleName = middleName;
@@ -44,7 +44,7 @@ namespace OTA.Classes
         public Passenger(string givenName, string surname,
             string nationality, string gender, string birthDate, 
             string passportOrIDNo, string passportOrIDExpiryDate, string email,
-            int mobileNo, int cabinBagCount, int checkedBagCount)
+            string mobileNo, int cabinBagCount, int checkedBagCount)
         {
             this.GivenName = givenName;
             this.Surname = surname;

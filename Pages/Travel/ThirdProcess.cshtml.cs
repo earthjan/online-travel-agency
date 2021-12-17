@@ -60,7 +60,7 @@ namespace OTA.Pages
                     "" + Request.Form[passportOrIDNumber],
                     "" + Request.Form[passportOrIDExpiryDate],
                     "" + Request.Form["email"],
-                    Int32.Parse(Request.Form["phone"]),
+                    "" + Request.Form["phone"],
                     Int32.Parse(Request.Form[cabinBag]),
                     Int32.Parse(Request.Form[checkedBag])
                 );

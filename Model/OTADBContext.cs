@@ -233,7 +233,7 @@ namespace OTA.Model
         public static bool InsertFlightServicePassenger(
             string givenName, string middleName, string surname, 
             string gender, string birthDate, string passportOrIDNo, 
-            string passportOrIDExpiryDate, string email, int mobileNo)
+            string passportOrIDExpiryDate, string email, string mobileNo)
         {
             using (var db = new OTADBContext())
             {

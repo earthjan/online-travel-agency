@@ -53,7 +53,7 @@ namespace OTA.Model
         [StringLength(55)]
         public string Email { get; set; }
         [Column("mobile_no")]
-        public int MobileNo { get; set; }
+        public string MobileNo { get; set; }
 
         [InverseProperty(nameof(BaggageInformation.Passenger))]
         public virtual ICollection<BaggageInformation> BaggageInformations { get; set; }
