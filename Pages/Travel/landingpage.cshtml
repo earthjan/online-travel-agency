@@ -1,11 +1,12 @@
-@page
+@page "{handler?}"
 @model OTA.Pages.LandingPagePageModel;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <main>
     <!-- Booking -->
     <section class="bg-light bg-image-main d-flex align-items-center img-layout"
         style="height: 500px; background-image: url(@Model.Background);">
-        <form class="container border border-white border-sm-0 rounded-3 w-75 bg-white py-3" action="#" method="GET">
+        <form class="container border border-white border-sm-0 rounded-3 w-75 bg-white py-3" asp-page-handler="results" method="GET">
             <!-- Trip type, seat class, no. of passenger, & bags -->
             <div class="row row-cols-1 row-cols-md-3 gy-2">
                 <!-- Trip type -->

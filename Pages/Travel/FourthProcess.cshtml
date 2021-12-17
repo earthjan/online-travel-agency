@@ -1,5 +1,6 @@
-@page
+@page "{handler?}"
 @model OTA.Pages.FourthProcessPageModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <!-- dynamic values
     1. expiration date
@@ -25,14 +26,14 @@
                 </ol>
             </div>
             <div class="row row-cols-2 gy-3">
-                <div class="col my-fs-small">1x Checked baggage</div>
-                <div class="col-auto my-fs-small">always 1000</div>
-                <div class="col my-fs-small">2x Cabin baggage</div>
-                <div class="col my-fs-small">always 1k each</div>
+                <div class="col my-fs-small">@Model.CheckedBagCount Checked baggage</div>
+                <div class="col-auto my-fs-small">₱ @Model.PriceInfo.CheckedBags</div>
+                <div class="col my-fs-small">@Model.CabinBagCount Cabin baggage</div>
+                <div class="col my-fs-small">₱ @Model.PriceInfo.CabinBags</div>
                 <div class="col my-fs-small">Fee for processing input</div>
-                <div class="col my-fs-small">always 250</div>
+                <div class="col my-fs-small">₱ @Model.Fee</div>
                 <div class="col fs-2">Total price</div>
-                <div class="col fs-2">price</div>
+                <div class="col fs-2">₱ @Model.PriceInfo.TotalPrice</div>
             </div>
             <div class="d-flex mt-2">
                 <button class="btn border rounded bg-secondary-cs text-white flex-fill" type="button"
@@ -57,10 +58,12 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn bg-secondary-cs text-white" data-bs-dismiss="modal">
-                    Done
-                </button>
+                <form asp-page-handler="done" method="post">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn bg-secondary-cs text-white" type="submit">
+                        Done
+                    </button>
+                </form>
             </div>
         </div>
     </div>

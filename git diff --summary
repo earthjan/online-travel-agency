@@ -1,0 +1,1355 @@
+warning: LF will be replaced by CRLF in Pages/Travel/SecondProcess.cshtml.cs.
+The file will have its original line endings in your working directory
+[1mdiff --git a/OTA.csproj b/OTA.csproj[m
+[1mindex 842a770..8b4aac4 100644[m
+[1m--- a/OTA.csproj[m
+[1m+++ b/OTA.csproj[m
+[36m@@ -4,4 +4,13 @@[m
+     <TargetFramework>net5.0</TargetFramework>[m
+   </PropertyGroup>[m
+ [m
+[32m+[m[32m  <ItemGroup>[m
+[32m+[m[32m    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.2">[m
+[32m+[m[32m      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>[m
+[32m+[m[32m      <PrivateAssets>all</PrivateAssets>[m
+[32m+[m[32m    </PackageReference>[m
+[32m+[m[32m    <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.0-m8.0.23" />[m
+[32m+[m[32m    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />[m
+[32m+[m[32m  </ItemGroup>[m
+[32m+[m
+ </Project>[m
+[1mdiff --git a/Pages/Shared/_Layout.cshtml b/Pages/Shared/_Layout.cshtml[m
+[1mindex 84ffd5e..1bed2b1 100644[m
+[1m--- a/Pages/Shared/_Layout.cshtml[m
+[1m+++ b/Pages/Shared/_Layout.cshtml[m
+[36m@@ -22,7 +22,7 @@[m
+         <nav class="navbar navbar-expand-md navbar-light border py-4">[m
+             <div class="container-fluid">[m
+                 <a href="#" class="navbar-brand fw-bold fs-2 ms-sm-1 ms-md-2 ms-lg-3 ms-xl-4 ms-xxl-5">[m
+[31m-                    <span class="text-primary-cs">OTA NAME</span>[m
+[32m+[m[32m                    <span class="text-primary-cs">Feveros</span>[m
+                 </a>[m
+ [m
+                 <!-- Toggle-collapse button -->[m
+[36m@@ -48,11 +48,6 @@[m
+                                 <li><a class="dropdown-item" href="#">GBP £</a></li> *@[m
+                             </ul>[m
+                         </div>[m
+[31m-                        <a class="nav-link nav-item text-primary btn[m
+[31m-                            mx-sm-1 mx-md-2 mx-lg-3 mx-xl-4 mx-xxl-5 px-md-3[m
+[31m-                            rounded-pill border-1 border-primary-cs" href="#">[m
+[31m-                            <span class="text-primary-cs">Sign in</span>      [m
+[31m-                        </a>[m
+                     </div>[m
+                 </div>[m
+             </div>[m
+[36m@@ -66,7 +61,7 @@[m
+         <section>[m
+             <div class="row row-cols-1 gy-3">[m
+                 <div class="col text-center fs-1 fw-bold text-primary-cs">[m
+[31m-                   OTA Name[m
+[32m+[m[32m                   Feveros[m
+                 </div>[m
+                 <div class="col d-flex justify-content-center px-5 px-md-1">[m
+                     <a href="" class="my-icon-instagram_1 fs-1 text-primary-cs text-decoration-none"></a>[m
+[1mdiff --git a/Pages/Travel/FourthProcess.cshtml b/Pages/Travel/FourthProcess.cshtml[m
+[1mindex d2c4fa9..c555312 100644[m
+[1m--- a/Pages/Travel/FourthProcess.cshtml[m
+[1m+++ b/Pages/Travel/FourthProcess.cshtml[m
+[36m@@ -1,5 +1,6 @@[m
+[31m-@page[m
+[32m+[m[32m@page "{handler?}"[m
+ @model OTA.Pages.FourthProcessPageModel[m
+[32m+[m[32m@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers[m
+ [m
+ <!-- dynamic values[m
+     1. expiration date[m
+[36m@@ -25,14 +26,14 @@[m
+                 </ol>[m
+             </div>[m
+             <div class="row row-cols-2 gy-3">[m
+[31m-                <div class="col my-fs-small">1x Checked baggage</div>[m
+[31m-                <div class="col-auto my-fs-small">always 1000</div>[m
+[31m-                <div class="col my-fs-small">2x Cabin baggage</div>[m
+[31m-                <div class="col my-fs-small">always 1k each</div>[m
+[32m+[m[32m                <div class="col my-fs-small">@Model.CheckedBagCount Checked baggage</div>[m
+[32m+[m[32m                <div class="col-auto my-fs-small">₱ @Model.PriceInfo.CheckedBags</div>[m
+[32m+[m[32m                <div class="col my-fs-small">@Model.CabinBagCount Cabin baggage</div>[m
+[32m+[m[32m                <div class="col my-fs-small">₱ @Model.PriceInfo.CabinBags</div>[m
+                 <div class="col my-fs-small">Fee for processing input</div>[m
+[31m-                <div class="col my-fs-small">always 250</div>[m
+[32m+[m[32m                <div class="col my-fs-small">₱ @Model.Fee</div>[m
+                 <div class="col fs-2">Total price</div>[m
+[31m-                <div class="col fs-2">price</div>[m
+[32m+[m[32m                <div class="col fs-2">₱ @Model.PriceInfo.TotalPrice</div>[m
+             </div>[m
+             <div class="d-flex mt-2">[m
+                 <button class="btn border rounded bg-secondary-cs text-white flex-fill" type="button"[m
+[36m@@ -57,10 +58,12 @@[m
+                 </div>[m
+             </div>[m
+             <div class="modal-footer">[m
+[31m-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>[m
+[31m-                <button type="button" class="btn bg-secondary-cs text-white" data-bs-dismiss="modal">[m
+[31m-                    Done[m
+[31m-                </button>[m
+[32m+[m[32m                <form asp-page-handler="done" method="post">[m
+[32m+[m[32m                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>[m
+[32m+[m[32m                    <button class="btn bg-secondary-cs text-white" type="submit">[m
+[32m+[m[32m                        Done[m
+[32m+[m[32m                    </button>[m
+[32m+[m[32m                </form>[m
+             </div>[m
+         </div>[m
+     </div>[m
+[1mdiff --git a/Pages/Travel/FourthProcess.cshtml.cs b/Pages/Travel/FourthProcess.cshtml.cs[m
+[1mindex db24aa0..5f913c7 100644[m
+[1m--- a/Pages/Travel/FourthProcess.cshtml.cs[m
+[1m+++ b/Pages/Travel/FourthProcess.cshtml.cs[m
+[36m@@ -1,25 +1,134 @@[m
+ using Microsoft.AspNetCore.Mvc.RazorPages;[m
+ using System.Collections.Generic;[m
+ using System;[m
+[32m+[m[32musing System.Text.Json;[m
+[32m+[m[32musing static System.Console;[m
+ using OTA.Classes;[m
+[32m+[m[32musing OTA.Model;[m
+ using Microsoft.AspNetCore.Mvc;[m
+[32m+[m[32musing static Newtonsoft.Json.JsonConvert;[m
+[32m+[m[32musing System.Linq;[m
+ [m
+ namespace OTA.Pages[m
+ {[m
+     public class FourthProcessPageModel : PageModel[m
+     {[m
+[32m+[m[32m        // I commented the BookingInfo field because only this handler method seems to access its data.[m
+[32m+[m[32m        // private BookingInfo bookingInfo;[m
+[32m+[m[32m        public PriceInfo PriceInfo;[m
+[32m+[m[32m        public int CabinBagCount;[m
+[32m+[m[32m        public int CheckedBagCount;[m
+         public string ExpirationDate = GetNextWeekDate();[m
+         public int GeneratedCode = generateCode();[m
+[32m+[m[32m        public decimal Fee = 250.00M;[m
+ [m
+         /// <summary>[m
+         /// Generates 6-digit code.[m
+         /// It Is mainly used for one-time code generation.[m
+         /// </summary>[m
+         /// <returns>6-digit code</returns>[m
+[31m-        static int generateCode() => new Random().Next(111111, 999999);[m
+[32m+[m[32m        public static int generateCode() => new Random().Next(111111, 999999);[m
+ [m
+[31m-        public void OnGet()[m
+[31m-        {}[m
+[32m+[m[32m        // Continue troubleshooting the bookinginfo here while serializing[m
+[32m+[m[32m        public void OnGetPrice()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            // Gets the TempData["Passengers"] to compute bill baggage.[m
+[32m+[m[32m            var strPassengers = TempData["Passengers"] as string;[m
+[32m+[m[32m            var passengers = JsonSerializer.Deserialize<List<Passenger>>(strPassengers);[m
+[32m+[m
+[32m+[m[32m            // Gets the TempData["ChosenService"] to compute the total price in PriceInfo.[m
+[32m+[m[32m            var strChosenService = TempData["ChosenService"] as string;[m
+[32m+[m[32m            var chosenService = JsonSerializer.Deserialize<Model.FlightService>(strChosenService);[m
+[32m+[m
+[32m+[m[32m            // I commented the BookingInfo field because only this handler method seems to access its data.[m
+[32m+[m[32m            // Initializes the field.[m
+[32m+[m[32m            // this.bookingInfo = bookingInfo;[m
+[32m+[m
+[32m+[m[32m            // To display what things are billed.[m
+[32m+[m[32m            this.CabinBagCount = BookingInfo.GetCabinBagTotal(passengers);[m
+[32m+[m[32m            this.CheckedBagCount = BookingInfo.GetCheckedBagTotal(passengers);[m
+[32m+[m
+[32m+[m[32m            this.PriceInfo = new PriceInfo();[m
+[32m+[m
+[32m+[m[32m            this.PriceInfo.Passengers = this.PriceInfo.CalcPassenger(passengers);[m
+[32m+[m[32m            this.PriceInfo.CabinBags = BaggagePrice.Calc(BookingInfo.GetCabinBagTotal(passengers));[m
+[32m+[m[32m            this.PriceInfo.CheckedBags = BaggagePrice.Calc(BookingInfo.GetCheckedBagTotal(passengers));[m
+[32m+[m[32m            this.PriceInfo.TotalPrice = this.PriceInfo.SetTotalPrice(chosenService);[m
+[32m+[m
+[32m+[m[32m            // Processes the bill of bags of a respective passenger.[m
+[32m+[m[32m            var billBaggage = PriceInfo.CalcBaggage(passengers);[m
+[32m+[m
+[32m+[m[32m            // Saves the objects as TempData so that OnPostDone() can access them to store[m
+[32m+[m[32m            // their data in the DB.[m
+[32m+[m[32m            TempData["BillBaggage"] = JsonSerializer.Serialize(billBaggage);[m
+[32m+[m[32m            TempData["PriceInfo"] = JsonSerializer.Serialize(this.PriceInfo);[m
+[32m+[m[32m            TempData["ChosenService"] = JsonSerializer.Serialize(chosenService);[m
+[32m+[m[32m            TempData["Passengers"] = JsonSerializer.Serialize(passengers);[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        public IActionResult OnPostDone()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            // Gets the TempData to store the object's data in the DB.[m
+[32m+[m[32m            var strPassengers = TempData["Passengers"] as string;[m
+[32m+[m[32m            var passengers = JsonSerializer.Deserialize<List<Passenger>>(strPassengers);[m
+[32m+[m
+[32m+[m[32m            // Gets the TempData to store the object's data in the DB.[m
+[32m+[m[32m            var strChosenService = TempData["ChosenService"] as string;[m
+[32m+[m[32m            var chosenService = JsonSerializer.Deserialize<Model.FlightService>(strChosenService);[m
+[32m+[m
+[32m+[m[32m            // Gets the TempData to store the object's data in the DB.[m
+[32m+[m[32m            var strBillBaggage = TempData["BillBaggage"] as string;[m
+[32m+[m[32m            var billBaggage = JsonSerializer.Deserialize<List<BaggagePrice>>(strBillBaggage);[m
+[32m+[m
+[32m+[m[32m            // Gets the TempData to store the object's data in the DB.[m
+[32m+[m[32m            var strPriceInfo = TempData["PriceInfo"] as string;[m
+[32m+[m[32m            var priceInfo = JsonSerializer.Deserialize<PriceInfo>(strPriceInfo);[m
+[32m+[m
+[32m+[m[32m            // These are the values that should be stored in the DB.[m
+[32m+[m[32m            WriteLine("For booked_flight_service");[m
+[32m+[m[32m            OTADBContext.InsertBookedFlightService(chosenService.FsId, DateTime.Now + "");[m
+[32m+[m[32m            var bookedFlightService = OTADBContext.GetNewBookedFlightService();[m
+[32m+[m
+[32m+[m[32m            WriteLine("For billed_booked_flight_service");[m
+[32m+[m[32m            OTADBContext.InsertBilledBookedFlightService(bookedFlightService.BookingId, priceInfo.Method, priceInfo.TotalPrice);[m
+[32m+[m[32m            var billedBookedFlightService = OTADBContext.GetNewBilledBookedFlightService();[m
+[32m+[m
+[32m+[m[32m            WriteLine("For flight_service_passenger");[m
+[32m+[m
+[32m+[m[32m            var passenger = passengers.First();[m
+[32m+[m[32m            OTADBContext.InsertFlightServicePassenger([m
+[32m+[m[32m               passenger.GivenName,[m
+[32m+[m[32m               passenger.MiddleName,[m
+[32m+[m[32m               passenger.Surname,[m
+[32m+[m[32m               passenger.Gender,[m
+[32m+[m[32m               passenger.BirthDate,[m
+[32m+[m[32m               passenger.PassportOrIDNo,[m
+[32m+[m[32m               passenger.PassportOrIDExpiryDate,[m
+[32m+[m[32m               passenger.Email,[m
+[32m+[m[32m               passenger.MobileNo);[m
+[32m+[m
+[32m+[m[32m            var newPassenger = OTADBContext.GetNewFlightServicePassenger();[m
+[32m+[m
+[32m+[m[32m            WriteLine("For baggage_information");[m
+[32m+[m[32m            OTADBContext.InsertBaggageInformation([m
+[32m+[m[32m                    newPassenger.PassengerId,[m
+[32m+[m[32m                    passenger.CabinBagCount,[m
+[32m+[m[32m                    passenger.CheckedBagCount);[m
+[32m+[m
+[32m+[m
+[32m+[m[32m            var newBag = OTADBContext.GetNewBaggageInformation();[m
+[32m+[m
+[32m+[m[32m            WriteLine("For bill-baggage");[m
+[32m+[m[32m            var baggagePrice = billBaggage.First();[m
+[32m+[m[32m            OTADBContext.InsertBillBaggage([m
+[32m+[m[32m                billedBookedFlightService.BillId,[m
+[32m+[m[32m                newBag.BiId,[m
+[32m+[m[32m                baggagePrice.Cabin,[m
+[32m+[m[32m                baggagePrice.Checked[m
+[32m+[m[32m            );[m
+[32m+[m
+[32m+[m[32m            return RedirectToPage("landingpage");[m
+[32m+[m[32m        }[m
+ [m
+         /// <summary>[m
+         /// Determines the next week date-time that is relative with when the code is executed.[m
+[36m@@ -30,13 +139,14 @@[m [mnamespace OTA.Pages[m
+             DateTime result = DateTime.Now.AddDays(1);[m
+             DayOfWeek dayNow = DateTime.Now.DayOfWeek;[m
+ [m
+[31m-            while( result.DayOfWeek != dayNow )[m
+[31m-                result = result.AddDays(1);    [m
+[32m+[m[32m            while (result.DayOfWeek != dayNow)[m
+[32m+[m[32m                result = result.AddDays(1);[m
+ [m
+             // DD/MM/YYYY HH:MM AM/PM[m
+             string formattedDate = $"{result.Day}/{result.Month}/{result.Year} {DateTime.Now.Hour.ToString()}:{DateTime.Now.Minute.ToString()} {DateTime.Now.ToString("tt")}";[m
+ [m
+[31m-            return formattedDate;   [m
+[32m+[m[32m            return formattedDate;[m
+         }[m
+[32m+[m
+     }[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/Pages/Travel/SecondProcess.cshtml b/Pages/Travel/SecondProcess.cshtml[m
+[1mindex 39dea1c..cbe586d 100644[m
+[1m--- a/Pages/Travel/SecondProcess.cshtml[m
+[1m+++ b/Pages/Travel/SecondProcess.cshtml[m
+[36m@@ -1,9 +1,10 @@[m
+ @* Indicates that this file is a razor page and could be accessed thorugh URL. *@[m
+ @* This is mandatory *@[m
+[31m-@page[m
+[32m+[m[32m@page "{handler?}"[m
+ [m
+ @* Instead of using @function, this lets the razor page access its PageModel or code-behind file. *@[m
+ @model OTA.Pages.SecondProcessPageModel;[m
+[32m+[m[32m@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers[m
+ [m
+ <!-- [m
+         2.0 Main[m
+[36m@@ -14,13 +15,15 @@[m
+                 2.4.1 load more <button flex shrink max>[m
+     -->[m
+ [m
+[32m+[m
+[32m+[m
+ <main class="container-fluid mt-3">[m
+     <div class="row row-cols-1 gy-4 row-cols-md-2 justify-content-lg-start">[m
+         <!-- First column -->[m
+         <div class="col col-lg-5">[m
+             <div class="d-flex flex-column align-items-xl-center">[m
+                 <!-- Booking -->[m
+[31m-                <form class="border rounded-3 w-px-md-350 bg-white py-3" action="#" method="GET">[m
+[32m+[m[32m                <form class="border rounded-3 w-px-md-350 bg-white py-3" asp-page-handler="query" method="GET">[m
+                     <div class="container-fluid">[m
+                         <!-- Trip type, seat class, no. of passenger, & bags -->[m
+                         <div class="row row-cols-1 gy-2">[m
+[36m@@ -105,7 +108,7 @@[m
+                                 </div>[m
+                             </div>[m
+                             <div class="col d-flex justify-content-center">[m
+[31m-                                <button class="btn border rounded bg-secondary-cs text-white">[m
+[32m+[m[32m                                <button class="btn border rounded bg-secondary-cs text-white" name="isQuery" value="true">[m
+                                     Search Flight[m
+                                 </button>[m
+                             </div>[m
+[36m@@ -113,7 +116,7 @@[m
+                     </div>[m
+                 </form>[m
+                 <!-- Filter by -->[m
+[31m-                <section class="border border rounded-3 d-flex align-items-center mt-3 py-2 w-px-md-350">[m
+[32m+[m[32m                @* <section class="border border rounded-3 d-flex align-items-center mt-3 py-2 w-px-md-350">[m
+                     <div class="container-fluid">[m
+                         <div class="row row-cols-1">[m
+                             <!-- Title -->[m
+[36m@@ -138,7 +141,7 @@[m
+                             </button>[m
+                         </div>[m
+                     </div>[m
+[31m-                </section>[m
+[32m+[m[32m                </section> *@[m
+                 <!-- Advertisement -->[m
+                 @* There's no time to implement this extra. *@[m
+                 @* <section class="border rounded-3 bg-light w-px-md-350 mt-3" style="height: 350px;">[m
+[36m@@ -153,7 +156,7 @@[m
+             <div class="row row-cols-1 gy-3">[m
+                 <!-- A flight result -->[m
+                 <!-- You can add more columns here for flight results. -->[m
+[31m-                @for (int a = 0; a <= 3; a++)[m
+[32m+[m[32m                @foreach (var service in @Model.FlightServices)[m
+                 { [m
+                     <div class="col border rounded-3 py-3">[m
+                         <div class="row row-cols-1 row-cols-lg-2">[m
+[36m@@ -182,39 +185,39 @@[m
+                                                 <div class="row row-cols-auto flex-column">[m
+                                                     <!-- Day and date -->[m
+                                                     <div class="col">[m
+[31m-                                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>[m
+[32m+[m[32m                                                        <h6 class="fw-bold mb-0">@service.DepartureSchedule</h6>[m
+                                                     </div>[m
+                                                     <!-- Time -->[m
+                                                     <div class="col">[m
+[31m-                                                        <h6>9:00 PM</h6>[m
+[32m+[m[32m                                                        <h6>@service.DepartureSchedule</h6>[m
+                                                     </div>[m
+                                                     <!-- Location -->[m
+                                                     <div class="col py-3">[m
+[31m-                                                        <h6><span class="fw-bold">Manila</span> <span[m
+[31m-                                                                class="text-secondary">MNL</span></h6>[m
+[32m+[m[32m                                                        <h6><span class="fw-bold">@service.Origin</span> <span[m
+[32m+[m[32m                                                                class="text-secondary">@service.Origin</span></h6>[m
+                                                     </div>[m
+                                                 </div>[m
+                                             </div>[m
+                                             <!-- Flight duration -->[m
+                                             <div class="col d-flex flex-column justify-content-center align-items-center">[m
+                                                 <span class="fs-1 my-icon-from_to_flight"></span>[m
+[31m-                                                <span>27h 10m</span>[m
+[32m+[m[32m                                                <span>@service.Duration</span>[m
+                                             </div>[m
+                                             <!-- To schedule -->[m
+                                             <div class="col d-flex justify-content-center">[m
+                                                 <div class="row row-cols-auto flex-column">[m
+                                                     <!-- Day and date -->[m
+                                                     <div class="col">[m
+[31m-                                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>[m
+[32m+[m[32m                                                        <h6 class="fw-bold mb-0">@service.DepartureSchedule</h6>[m
+                                                     </div>[m
+                                                     <!-- Time -->[m
+                                                     <div class="col">[m
+[31m-                                                        <h6>9:00 PM</h6>[m
+[32m+[m[32m                                                        <h6>@service.DepartureSchedule</h6>[m
+                                                     </div>[m
+                                                     <!-- Location -->[m
+                                                     <div class="col py-3">[m
+[31m-                                                        <h6><span class="fw-bold">Manila</span> <span[m
+[31m-                                                                class="text-secondary">MNL</span></h6>[m
+[32m+[m[32m                                                        <h6><span class="fw-bold">@service.Destination</span> <span[m
+[32m+[m[32m                                                                class="text-secondary">@service.Destination</span></h6>[m
+                                                     </div>[m
+                                                 </div>[m
+                                             </div>[m
+[36m@@ -242,39 +245,39 @@[m
+                                                 <div class="row row-cols-auto flex-column">[m
+                                                     <!-- Day and date -->[m
+                                                     <div class="col">[m
+[31m-                                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>[m
+[32m+[m[32m                                                        <h6 class="fw-bold mb-0">@service.ArrivalSchedule</h6>[m
+                                                     </div>[m
+                                                     <!-- Time -->[m
+                                                     <div class="col">[m
+[31m-                                                        <h6>9:00 PM</h6>[m
+[32m+[m[32m                                                        <h6>@service.ArrivalSchedule</h6>[m
+                                                     </div>[m
+                                                     <!-- Location -->[m
+                                                     <div class="col py-3">[m
+[31m-                                                        <h6><span class="fw-bold">Manila</span> <span[m
+[31m-                                                                class="text-secondary">MNL</span></h6>[m
+[32m+[m[32m                                                        <h6><span class="fw-bold">@service.Destination</span> <span[m
+[32m+[m[32m                                                                class="text-secondary">@service.Destination</span></h6>[m
+                                                     </div>[m
+                                                 </div>[m
+                                             </div>[m
+                                             <!-- Flight duration -->[m
+                                             <div class="col d-flex flex-column justify-content-center align-items-center">[m
+                                                 <span class="fs-1 my-icon-from_to_flight"></span>[m
+[31m-                                                <span>27h 10m</span>[m
+[32m+[m[32m                                                <span>@service.Duration</span>[m
+                                             </div>[m
+                                             <!-- To schedule -->[m
+                                             <div class="col d-flex justify-content-center">[m
+                                                 <div class="row row-cols-auto flex-column">[m
+                                                     <!-- Day and date -->[m
+                                                     <div class="col">[m
+[31m-                                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>[m
+[32m+[m[32m                                                        <h6 class="fw-bold mb-0">@service.ArrivalSchedule</h6>[m
+                                                     </div>[m
+                                                     <!-- Time -->[m
+                                                     <div class="col">[m
+[31m-                                                        <h6>9:00 PM</h6>[m
+[32m+[m[32m                                                        <h6>@service.ArrivalSchedule</h6>[m
+                                                     </div>[m
+                                                     <!-- Location -->[m
+                                                     <div class="col py-3">[m
+[31m-                                                        <h6><span class="fw-bold">Manila</span> <span[m
+[31m-                                                                class="text-secondary">MNL</span></h6>[m
+[32m+[m[32m                                                        <h6><span class="fw-bold">@service.Origin</span> <span[m
+[32m+[m[32m                                                                class="text-secondary">@service.Origin</span></h6>[m
+                                                     </div>[m
+                                                 </div>[m
+                                             </div>[m
+[36m@@ -285,7 +288,7 @@[m
+                                         <div class="row row-cols-2">[m
+                                             <!-- Seat class -->[m
+                                             <div class="col d-flex align-items-center">[m
+[31m-                                                <h6 class="border border-dark rounded-pill px-1 py-1 my-0">Economy</h6>[m
+[32m+[m[32m                                                <h6 class="border border-dark rounded-pill px-1 py-1 my-0">@service.CabinClass</h6>[m
+                                             </div>[m
+                                             <!-- Details -->[m
+                                             @* There's no time to implement this extra. *@[m
+[36m@@ -304,12 +307,12 @@[m
+                                 <div class="row row-cols-2 h-100 row-cols-lg-1 flex-lg-column">[m
+                                     <!-- Price -->[m
+                                     <div class="col d-flex justify-content-center align-items-center flex-lg-grow-1">[m
+[31m-                                        <h6 class="my-0">₱44,444</h6>[m
+[32m+[m[32m                                        <h6 class="my-0">₱ @service.Price</h6>[m
+                                     </div>[m
+                                     <!-- To Book -->[m
+[31m-                                    <form class="col d-flex justify-content-center" action="#" method="GET">[m
+[32m+[m[32m                                    <form class="col d-flex justify-content-center" asp-page-handler="book" method="POST">[m
+                                         <button class="btn border rounded bg-secondary-cs text-white flex-fill"[m
+[31m-                                            type="submit" value="CHANGE THIS">[m
+[32m+[m[32m                                            type="submit" value="@service.FsId" name="FS_ID">[m
+                                             Book[m
+                                         </button>[m
+                                     </form>[m
+[1mdiff --git a/Pages/Travel/SecondProcess.cshtml.cs b/Pages/Travel/SecondProcess.cshtml.cs[m
+[1mindex 7f8e3e1..5c144e6 100644[m
+[1m--- a/Pages/Travel/SecondProcess.cshtml.cs[m
+[1m+++ b/Pages/Travel/SecondProcess.cshtml.cs[m
+[36m@@ -1,18 +1,63 @@[m
+ using Microsoft.AspNetCore.Mvc.RazorPages;[m
+ using System;[m
+[32m+[m[32musing OTA.Pages;[m
+[32m+[m[32musing System.Text.Json;[m
+[32m+[m[32musing System.Collections.Generic;[m
+[32m+[m[32musing Microsoft.AspNetCore.Mvc;[m
+[32m+[m[32musing OTA.Classes;[m
+[32m+[m[32musing OTA.Model;[m
+ [m
+ namespace OTA.Pages[m
+ {[m
+     public class SecondProcessPageModel : PageModel[m
+     {[m
+[31m-        /// <summary>[m
+[31m-        /// Is a collection of flight results based on a flight query.[m
+[31m-        /// </summary>[m
+[31m-        public object[] flightResults;[m
+[32m+[m[32m        [BindProperty(SupportsGet = true)][m
+[32m+[m[32m        public string Adult { get; set; }[m
+[32m+[m[32m        [BindProperty(SupportsGet = true)][m
+[32m+[m[32m        public string Child { get; set; }[m
+[32m+[m[32m        [BindProperty(SupportsGet = true)][m
+[32m+[m[32m        public string Infant { get; set; }[m
+[32m+[m[32m        public List<Model.FlightService> FlightServices;[m
+[32m+[m[32m        public PassengersService passengersService = new PassengersService();[m
+ [m
+[31m-        public void OnGet()[m
+[32m+[m[32m        public IActionResult OnGetQuery(string isQuery, string trip_type, string cabin_class,[m
+[32m+[m[32m            string from, string to, string departure, string @return)[m
+         {[m
+[32m+[m[32m            // This is just a simulation on how search flight services from the model and how to display them.[m
+[32m+[m[32m            this.FlightServices = OTADBContext.GetFlightServices();[m
+[32m+[m
+[32m+[m[32m            // Checks if the customer queries again a service by using the one in the second page.[m
+[32m+[m[32m            // If the customer does, the TempData that holds the query from the landing page is changed[m
+[32m+[m[32m            // so it will hold the new query done in the second page.[m
+[32m+[m[32m            if (isQuery != null && isQuery.Equals("true"))[m
+[32m+[m[32m            {[m
+[32m+[m[32m                this.passengersService.NumberOfPassenger =[m[41m [m
+[32m+[m[32m                    new NumberOfPassenger(this.Adult, this.Child, this.Infant);[m
+[32m+[m
+[32m+[m[32m                TempData["NumberOfPassenger"] = JsonSerializer.Serialize(this.passengersService.NumberOfPassenger);[m
+[32m+[m[32m            }[m
+[32m+[m[41m                [m
+[32m+[m[32m            return Page();[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        public IActionResult OnPostBook(int FS_ID)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            // Gets the query from either the landing page or the second page.[m
+[32m+[m[32m            // The NOP abbreviation in the identifiers means number of passenger.[m
+[32m+[m[32m            var strNOP = TempData["NumberOfPassenger"] as string;[m
+[32m+[m[32m            var NOP = JsonSerializer.Deserialize<NumberOfPassenger>(strNOP);[m
+[32m+[m[41m            [m
+[32m+[m[32m            // Gets the chosen service in the DB using PK.[m
+[32m+[m[32m            var chosenService = OTADBContext.GetFlightService(FS_ID);[m
+[32m+[m
+[32m+[m[32m            var passengersService = new PassengersService();[m
+[32m+[m[32m            passengersService.NumberOfPassenger = NOP;[m
+[32m+[m[32m            passengersService.ChosenService = chosenService;[m
+[32m+[m
+[32m+[m[32m            TempData["PassengersService"] = JsonSerializer.Serialize(passengersService);[m
+[32m+[m
+[32m+[m[32m            return RedirectToPage("ThirdProcess", "Form");[m[41m    [m
+         }[m
+     }[m
+[31m-    [m
+[32m+[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/Pages/Travel/ThirdProcess.cshtml b/Pages/Travel/ThirdProcess.cshtml[m
+[1mindex c064856..c84b76b 100644[m
+[1m--- a/Pages/Travel/ThirdProcess.cshtml[m
+[1m+++ b/Pages/Travel/ThirdProcess.cshtml[m
+[36m@@ -1,14 +1,15 @@[m
+[31m-@page[m
+[32m+[m[32m@page "{handler?}"[m
+ @model OTA.Pages.ThirdProcessPageModel[m
+[32m+[m[32m@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers[m
+ [m
+ <main class="container-fluid">[m
+[31m-    <form action="#" method="GET" class="row row-cols-1 justify-content-center">[m
+[32m+[m[32m    <form asp-page-handler="book" method="POST" class="row row-cols-1 justify-content-center">[m
+         <!-- Title -->[m
+         <div class="col py-3 pt-lg-5 col-lg-9">[m
+             <div class="container-sm">[m
+[31m-                <span class="my-fs-xxlarge fw-bold">Manila</span> <!-- dynamic value -->[m
+[32m+[m[32m                <span class="my-fs-xxlarge fw-bold">@Model.PassengersService.ChosenService.Origin</span> <!-- dynamic value -->[m
+                 <span class="my-fs-xxlarge">→</span>[m
+[31m-                <span class="my-fs-xxlarge fw-bold">Tokyo and back</span> <!-- "tokyo" is a dynamic value -->[m
+[32m+[m[32m                <span class="my-fs-xxlarge fw-bold">@Model.PassengersService.ChosenService.Destination and back</span> <!-- "tokyo" is a dynamic value -->[m
+             </div>[m
+         </div>[m
+         <!-- Flight details -->[m
+[36m@@ -38,15 +39,17 @@[m
+                                 <div class="row row-cols-auto flex-column">[m
+                                     <!-- Day and date -->[m
+                                     <div class="col">[m
+[31m-                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>[m
+[32m+[m[32m                                        <h6 class="fw-bold mb-0">@Model.PassengersService.ChosenService.DepartureSchedule</h6>[m
+                                     </div>[m
+                                     <!-- Time -->[m
+                                     <div class="col">[m
+[31m-                                        <h6>9:00 PM</h6>[m
+[32m+[m[32m                                        <h6>@Model.PassengersService.ChosenService.DepartureSchedule</h6>[m
+                                     </div>[m
+                                     <!-- Location -->[m
+                                     <div class="col py-3">[m
+[31m-                                        <h6><span class="fw-bold">Manila</span> <span class="text-secondary">MNL</span>[m
+[32m+[m[32m                                        <h6>[m
+[32m+[m[32m                                            <span class="fw-bold">@Model.PassengersService.ChosenService.Origin</span>[m[41m [m
+[32m+[m[32m                                            <span class="text-secondary">@Model.PassengersService.ChosenService.Origin</span>[m
+                                         </h6>[m
+                                     </div>[m
+                                 </div>[m
+[36m@@ -54,22 +57,23 @@[m
+                             <!-- Flight duration -->[m
+                             <div class="col d-flex flex-column justify-content-center align-items-center">[m
+                                 <span class="fs-1 my-icon-from_to_flight"></span>[m
+[31m-                                <span>27h 10m</span>[m
+[32m+[m[32m                                <span>@Model.PassengersService.ChosenService.Duration</span>[m
+                             </div>[m
+                             <!-- To schedule -->[m
+                             <div class="col d-flex justify-content-center">[m
+                                 <div class="row row-cols-auto flex-column">[m
+                                     <!-- Day and date -->[m
+                                     <div class="col">[m
+[31m-                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>[m
+[32m+[m[32m                                        <h6 class="fw-bold mb-0">@Model.PassengersService.ChosenService.ArrivalSchedule</h6>[m
+                                     </div>[m
+                                     <!-- Time -->[m
+                                     <div class="col">[m
+[31m-                                        <h6>9:00 PM</h6>[m
+[32m+[m[32m                                        <h6>@Model.PassengersService.ChosenService.ArrivalSchedule</h6>[m
+                                     </div>[m
+                                     <!-- Location -->[m
+                                     <div class="col py-3">[m
+[31m-                                        <h6><span class="fw-bold">Manila</span> <span class="text-secondary">MNL</span>[m
+[32m+[m[32m                                        <h6><span class="fw-bold">@Model.PassengersService.ChosenService.Destination</span>[m[41m [m
+[32m+[m[32m                                        <span class="text-secondary">@Model.PassengersService.ChosenService.Destination</span>[m
+                                         </h6>[m
+                                     </div>[m
+                                 </div>[m
+[36m@@ -98,15 +102,16 @@[m
+                                 <div class="row row-cols-auto flex-column">[m
+                                     <!-- Day and date -->[m
+                                     <div class="col">[m
+[31m-                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>[m
+[32m+[m[32m                                        <h6 class="fw-bold mb-0">@Model.PassengersService.ChosenService.ArrivalSchedule</h6>[m
+                                     </div>[m
+                                     <!-- Time -->[m
+                                     <div class="col">[m
+[31m-                                        <h6>9:00 PM</h6>[m
+[32m+[m[32m                                        <h6>@Model.PassengersService.ChosenService.ArrivalSchedule</h6>[m
+                                     </div>[m
+                                     <!-- Location -->[m
+                                     <div class="col py-3">[m
+[31m-                                        <h6><span class="fw-bold">Manila</span> <span class="text-secondary">MNL</span>[m
+[32m+[m[32m                                        <h6><span class="fw-bold">@Model.PassengersService.ChosenService.Destination</span>[m[41m [m
+[32m+[m[32m                                        <span class="text-secondary">@Model.PassengersService.ChosenService.Destination</span>[m
+                                         </h6>[m
+                                     </div>[m
+                                 </div>[m
+[36m@@ -114,22 +119,24 @@[m
+                             <!-- Flight duration -->[m
+                             <div class="col d-flex flex-column justify-content-center align-items-center">[m
+                                 <span class="fs-1 my-icon-from_to_flight"></span>[m
+[31m-                                <span>27h 10m</span>[m
+[32m+[m[32m                                <span>@Model.PassengersService.ChosenService.Duration</span>[m
+                             </div>[m
+                             <!-- To schedule -->[m
+                             <div class="col d-flex justify-content-center">[m
+                                 <div class="row row-cols-auto flex-column">[m
+                                     <!-- Day and date -->[m
+                                     <div class="col">[m
+[31m-                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>[m
+[32m+[m[32m                                        <h6 class="fw-bold mb-0">@Model.PassengersService.ChosenService.DepartureSchedule</h6>[m
+                                     </div>[m
+                                     <!-- Time -->[m
+                                     <div class="col">[m
+[31m-                                        <h6>9:00 PM</h6>[m
+[32m+[m[32m                                        <h6>@Model.PassengersService.ChosenService.DepartureSchedule</h6>[m
+                                     </div>[m
+                                     <!-- Location -->[m
+                                     <div class="col py-3">[m
+[31m-                                        <h6><span class="fw-bold">Manila</span> <span class="text-secondary">MNL</span>[m
+[32m+[m[32m                                        <h6>[m
+[32m+[m[32m                                            <span class="fw-bold">@Model.PassengersService.ChosenService.Origin</span>[m[41m [m
+[32m+[m[32m                                            <span class="text-secondary">@Model.PassengersService.ChosenService.Origin</span>[m
+                                         </h6>[m
+                                     </div>[m
+                                 </div>[m
+[36m@@ -141,7 +148,7 @@[m
+                         <div class="row row-cols-2">[m
+                             <!-- Seat class -->[m
+                             <div class="col d-flex align-items-center">[m
+[31m-                                <h6 class="border border-dark rounded-pill px-1 py-1 my-0">Economy</h6>[m
+[32m+[m[32m                                <h6 class="border border-dark rounded-pill px-1 py-1 my-0">@Model.PassengersService.ChosenService.CabinClass</h6>[m
+                             </div>[m
+                             <!-- Details -->[m
+                             <!-- There's no time to do this extra. -->[m
+[36m@@ -156,7 +163,7 @@[m
+                 </div>[m
+             </div>[m
+             <!-- Price -->[m
+[31m-            <div class="container align-self-end flex-grow-1">[m
+[32m+[m[32m            @* <div class="container align-self-end flex-grow-1">[m
+                 <div class="row row-cols-2 gy-3">[m
+                     <!-- this pricing details/values are determined by an object containing the pricing details/values. -->[m
+                     <div class="col">2x Adult</div> <!-- dynamic value -->[m
+[36m@@ -169,7 +176,7 @@[m
+                     <div class="col text-end my-fs-xlarge">₱ 99.99</div>[m
+                     <!-- dynamic value -->[m
+                 </div>[m
+[31m-            </div>[m
+[32m+[m[32m            </div> *@[m
+         </div>[m
+         <!-- Contact forms -->[m
+         <div class="col col-lg-9">[m
+[36m@@ -177,20 +184,30 @@[m
+                 <div class="col-lg-9">[m
+                     <div class="text-center fw-bold">Contact details</div>[m
+                     <label class="form-label" for="email">Email</label>[m
+[31m-                    <input class="form-control" type="email" id="email" placeholder="your@email.com" name="email">[m
+[32m+[m[32m                    <input class="form-control" type="email" id="email" placeholder="your@email.com" name="email" required>[m
+                     <label for="phone">Phone</label>[m
+                     <div class="input-group flex-nowrap justify-content-center">[m
+                         <span class="input-group-text border-end-0 rounded-start bg-white text-black-50">PH[m
+                             +63</span>[m
+[31m-                        <input class="form-control border border-1 rounded-end bg-white" type="tel" id="phone"[m
+[31m-                            name="phone">[m
+[32m+[m[32m                        <input class="form-control border border-1 rounded-end bg-white" type="number" id="phone"[m
+[32m+[m[32m                            name="phone" maxlength="11" required>[m
+                     </div>[m
+                 </div>[m
+             </div>[m
+         </div>[m
+         <!-- Passenger forms -->[m
+[31m-        @for (int i = 0; i < 2; i++)[m
+[32m+[m[32m        @for (int i = 0; i < @Model.PassengersService.NumberOfPassenger.GetTotal(); i++)[m
+         {[m
+[32m+[m[32m            string givenName = "given_name" + i,[m
+[32m+[m[32m                        surname = "surname" + i,[m
+[32m+[m[32m                        nationality = "nationality" + i,[m
+[32m+[m[32m                        gender = "gender" + i,[m
+[32m+[m[32m                        dateOfBirth = "date_of_birth" + i,[m
+[32m+[m[32m                        passportOrIDNumber = "passport_or_id_number" + i,[m
+[32m+[m[32m                        passportOrIDExpiryDate = "passport_or_id_expiry_date" + i,[m
+[32m+[m[32m                        cabinBag = "cabin_bag" + i,[m
+[32m+[m[32m                        checkedBag = "checked_bag" + i;[m
+[32m+[m[41m                        [m
+             <div class="col col-lg-9">[m
+                 <div class="container border rounded-3 mt-3 py-4">[m
+                     <!-- dynamic section based on the number of booking passenger of a service. -->[m
+[36m@@ -200,24 +217,24 @@[m
+                             Passenger[m
+                         </div>[m
+                         <div class="col d-flex flex-column">[m
+[31m-                            <label class="form-label" for="given_names">Given names</label>[m
+[32m+[m[32m                            <label class="form-label" for="@givenName">Given names</label>[m
+                             <input class="form-control" type="text" id="given_names" placeholder="e.g. Oliver James"[m
+[31m-                                name="given_name" required>[m
+[32m+[m[32m                                name="@givenName" required>[m
+                         </div>[m
+                         <div class="col d-flex flex-column">[m
+[31m-                            <label class="form-label" for="surnames">Surnames</label>[m
+[31m-                            <input class="form-control" type="text" id="surnames" placeholder="e.g. Brown" name="surname"[m
+[32m+[m[32m                            <label class="form-label" for="@@surname">Surnames</label>[m
+[32m+[m[32m                            <input class="form-control" type="text" id="surnames" placeholder="e.g. Brown" name="@surname"[m
+                                 required>[m
+                         </div>[m
+                         <div class="col d-flex">[m
+                             <div class="d-flex flex-column flex-grow-1">[m
+                                 <label class="form-label" for="nationality">Nationality</label>[m
+                                 <input class="form-control" type="text" id="nationality" placeholder="e.g. Filipino"[m
+[31m-                                    name="nationality" required>[m
+[32m+[m[32m                                    name="@nationality" required>[m
+                             </div>[m
+                             <div class="d-flex flex-column flex-grow-1">[m
+                                 <label class="form-label" for="gender">Gender</label>[m
+[31m-                                <select class="form-select flex-fill" id="gender" name="gender" required>[m
+[32m+[m[32m                                <select class="form-select flex-fill" id="gender" name="@gender" required>[m
+                                     <option class="selected">Male</option>[m
+                                     <option>Female</option>[m
+                                     <option>Others</option>[m
+[36m@@ -226,24 +243,19 @@[m
+                         </div>[m
+                         <div class="col d-flex flex-column">[m
+                             <label class="form-label" for="date_of_birth">Date of birth</label>[m
+[31m-                            <input class="form-control" type="date" id="date_of_birth" name="date_of_birth" required>[m
+[32m+[m[32m                            <input class="form-control" type="date" id="date_of_birth" name="@dateOfBirth" required>[m
+                         </div>[m
+                         <div class="col d-flex flex-column">[m
+                             <label class="form-label" for="passport_or_id_number">Passport or ID number</label>[m
+                             <input class="form-control" type="number" id="passport_or_id_number"[m
+[31m-                                placeholder="Passport or ID number" name="passport_or_id_number" required>[m
+[32m+[m[32m                                placeholder="Passport or ID number" name="@passportOrIDNumber" required>[m
+                         </div>[m
+                         <div class="col d-flex flex-column">[m
+                             <label class="form-label" for="passport_or_id_expiry_date"[m
+                                 id="passport_or_id_expiry_form">Passport or ID expiry[m
+                                 date</label>[m
+                             <input class="form-control" type="date" id="passport_or_id_expiry_date"[m
+[31m-                                name="passport_or_id_expiry_date" required>[m
+[31m-                            <div class="d-flex">[m
+[31m-                                <input class="me-2 form-check-input" type="checkbox" id="no_expiry_date"[m
+[31m-                                    name="no_expiry_date">[m
+[31m-                                <label for="no_expiry_date">No expiry date</label>[m
+[31m-                            </div>[m
+[32m+[m[32m                                name="@passportOrIDExpiryDate" required>[m
+                         </div>[m
+                         <!-- Baggage forms -->[m
+                         <div class="w-100 py-2 border-top fw-bold mt-4">[m
+[36m@@ -259,17 +271,17 @@[m
+                                 <div class="col-4 col-sm-auto d-flex justify-content-end justify-content-sm-end ">[m
+                                     <button class="btn border bg-light rounded" style="width: 45px;" id="btn_dec_cabin_bag"[m
+                                         type="button"[m
+[31m-                                        onclick="decrement('cabin_bag', 'btn_dec_cabin_bag', 'btn_inc_cabin_bag', 0)"> -[m
+[32m+[m[32m                                        onclick="decrement('@cabinBag', 'btn_dec_cabin_bag', 'btn_inc_cabin_bag', 0)"> -[m
+                                     </button>[m
+                                 </div>[m
+                                 <div class="col-4 col-md-3 col-xl-2">[m
+[31m-                                    <input type="number" class="form-control bg-white" id="cabin_bag" name="DYNAMIC VALUE"[m
+[32m+[m[32m                                    <input type="number" class="form-control bg-white" id="@cabinBag" name="@cabinBag"[m
+                                         value="0" readonly>[m
+                                 </div>[m
+                                 <div class="col-4 col-sm-auto d-flex justify-content-start justify-content-sm-start">[m
+                                     <button class="btn border bg-light rounded" style="width: 45px;" id="btn_inc_cabin_bag"[m
+                                         type="button"[m
+[31m-                                        onclick="increment('cabin_bag', 'btn_dec_cabin_bag', 'btn_inc_cabin_bag', 2)"> +[m
+[32m+[m[32m                                        onclick="increment('@cabinBag', 'btn_dec_cabin_bag', 'btn_inc_cabin_bag', 2)"> +[m
+                                     </button>[m
+                                 </div>[m
+                                 <div class="col text-center col-xl-12">[m
+[36m@@ -289,17 +301,17 @@[m
+                                 <div class="col-4 col-sm-auto d-flex justify-content-end justify-content-sm-end ">[m
+                                     <button class="btn border bg-light rounded" style="width: 45px;"[m
+                                         id="btn_dec_checked_bag" type="button"[m
+[31m-                                        onclick="decrement('checked_bag', 'btn_dec_checked_bag', 'btn_inc_checked_bag', 0)">[m
+[32m+[m[32m                                        onclick="decrement('@checkedBag', 'btn_dec_checked_bag', 'btn_inc_checked_bag', 0)">[m
+                                         - </button>[m
+                                 </div>[m
+                                 <div class="col-4 col-md-3 col-xl-2">[m
+[31m-                                    <input type="number" class="form-control bg-white" id="checked_bag" name="DYNAMIC VALUE"[m
+[32m+[m[32m                                    <input type="number" class="form-control bg-white" id="@checkedBag" name="@checkedBag"[m
+                                         value="0" readonly>[m
+                                 </div>[m
+                                 <div class="col-4 col-sm-auto d-flex justify-content-start justify-content-sm-start">[m
+                                     <button class="btn border bg-light rounded" style="width: 45px;"[m
+                                         id="btn_inc_checked_bag" type="button"[m
+[31m-                                        onclick="increment('checked_bag', 'btn_dec_checked_bag', 'btn_inc_checked_bag', 1)">[m
+[32m+[m[32m                                        onclick="increment('@checkedBag', 'btn_dec_checked_bag', 'btn_inc_checked_bag', 1)">[m
+                                         + </button>[m
+                                 </div>[m
+                                 <div class="col text-center col-xl-12">[m
+[36m@@ -313,6 +325,8 @@[m
+                 </div>[m
+             </div>[m
+         }[m
+[32m+[m[32m        @* to determine the number of forms *@[m
+[32m+[m[32m        <input type="hidden" value="@Model.PassengersService.NumberOfPassenger.GetTotal()"  name="total">[m
+         <!-- Submit button -->[m
+         <div class="col col-lg-9">[m
+             <div class="d-flex mt-3">[m
+[1mdiff --git a/Pages/Travel/ThirdProcess.cshtml.cs b/Pages/Travel/ThirdProcess.cshtml.cs[m
+[1mindex 22713d0..07f412b 100644[m
+[1m--- a/Pages/Travel/ThirdProcess.cshtml.cs[m
+[1m+++ b/Pages/Travel/ThirdProcess.cshtml.cs[m
+[36m@@ -1,9 +1,84 @@[m
+ using Microsoft.AspNetCore.Mvc.RazorPages;[m
+[32m+[m[32musing System;[m
+[32m+[m[32musing static System.Console;[m
+[32m+[m[32musing System.Text.Json;[m
+[32m+[m[32musing static Newtonsoft.Json.JsonConvert;[m
+[32m+[m[32musing OTA.Classes;[m
+[32m+[m[32musing OTA.Model;[m
+[32m+[m[32musing Microsoft.AspNetCore.Mvc;[m
+[32m+[m[32musing System.Collections.Generic;[m
+ [m
+ namespace OTA.Pages[m
+ {[m
+     public class ThirdProcessPageModel : PageModel[m
+     {[m
+[31m-        [m
+[32m+[m[32m        // private List<Passenger> passengers;[m
+[32m+[m[32m        // private BookingInfo bookingInfo;[m
+[32m+[m[32m        public PassengersService PassengersService;[m
+[32m+[m
+[32m+[m[32m        public void OnGetForm()[m
+[32m+[m[32m        {[m
+[32m+[m[32m            // Gets TempData["PassengersService"] to display appropriate values.[m
+[32m+[m[32m            var strPassengersService = TempData["PassengersService"] as string;[m
+[32m+[m[32m            var passengersService = JsonSerializer.Deserialize<PassengersService>(strPassengersService);[m
+[32m+[m
+[32m+[m[32m            // Lets this controller's page access some data in the PassengersService[m[41m [m
+[32m+[m[32m            // given by SecondProcessPageModel.[m
+[32m+[m[32m            this.PassengersService = passengersService;[m
+[32m+[m
+[32m+[m[32m            // Lets OnPostBook() access the PassengersService[m[41m [m
+[32m+[m[32m            // given by SecondProcessPageModel.[m
+[32m+[m[32m            TempData["PassengersService"] = JsonSerializer.Serialize(this.PassengersService);[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        public IActionResult OnPostBook(int total)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            var passengers = new List<Passenger>();[m
+[32m+[m
+[32m+[m[32m            // Processes each passenger form section.[m
+[32m+[m[32m            // Creates the passenger collection to be able to[m[41m [m
+[32m+[m[32m            // construct BookingInfo.[m
+[32m+[m[32m            for (int i = 0; i < total; i++)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                string givenName = "given_name" + i,[m
+[32m+[m[32m                        surname = "surname" + i,[m
+[32m+[m[32m                        nationality = "nationality" + i,[m
+[32m+[m[32m                        gender = "gender" + i,[m
+[32m+[m[32m                        dateOfBirth = "date_of_birth" + i,[m
+[32m+[m[32m                        passportOrIDNumber = "passport_or_id_number" + i,[m
+[32m+[m[32m                        passportOrIDExpiryDate = "passport_or_id_expiry_date" + i,[m
+[32m+[m[32m                        cabinBag = "cabin_bag" + i,[m
+[32m+[m[32m                        checkedBag = "checked_bag" + i;[m
+[32m+[m
+[32m+[m
+[32m+[m[32m                var passenger = new Passenger([m
+[32m+[m[32m                    "" + Request.Form[givenName],[m
+[32m+[m[32m                    "" + Request.Form[surname],[m
+[32m+[m[32m                    "" + Request.Form[nationality],[m
+[32m+[m[32m                    "" + Request.Form[gender],[m
+[32m+[m[32m                    "" + Request.Form[dateOfBirth],[m
+[32m+[m[32m                    "" + Request.Form[passportOrIDNumber],[m
+[32m+[m[32m                    "" + Request.Form[passportOrIDExpiryDate],[m
+[32m+[m[32m                    "" + Request.Form["email"],[m
+[32m+[m[32m                    Int32.Parse(Request.Form["phone"]),[m
+[32m+[m[32m                    Int32.Parse(Request.Form[cabinBag]),[m
+[32m+[m[32m                    Int32.Parse(Request.Form[checkedBag])[m
+[32m+[m[32m                );[m
+[32m+[m
+[32m+[m[32m                passengers.Add(passenger);[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m            // Gets TempData["PassengersService"] to get the chosen service to be able[m
+[32m+[m[32m            // to construct BookingInfo.[m
+[32m+[m[32m            var strPassengersService = TempData["PassengersService"] as string;[m
+[32m+[m[32m            var passengersService = JsonSerializer.Deserialize<PassengersService>(strPassengersService);[m
+[32m+[m
+[32m+[m[32m            // These two data were fields of BookingInfo, but there are conflicts so they were isolated.[m
+[32m+[m[32m            TempData["Passengers"] = JsonSerializer.Serialize(passengers);[m
+[32m+[m[32m            TempData["ChosenService"] = JsonSerializer.Serialize<Model.FlightService>(passengersService.ChosenService);[m
+[32m+[m
+[32m+[m[32m            return RedirectToPage("FourthProcess", "Price");[m
+[32m+[m[32m        }[m
+     }[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[41m+[m
+[1mdiff --git a/Pages/Travel/landingpage.cshtml b/Pages/Travel/landingpage.cshtml[m
+[1mindex 7b39991..26eb60d 100644[m
+[1m--- a/Pages/Travel/landingpage.cshtml[m
+[1m+++ b/Pages/Travel/landingpage.cshtml[m
+[36m@@ -1,11 +1,12 @@[m
+[31m-@page[m
+[32m+[m[32m@page "{handler?}"[m
+ @model OTA.Pages.LandingPagePageModel;[m
+[32m+[m[32m@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers[m
+ [m
+ <main>[m
+     <!-- Booking -->[m
+     <section class="bg-light bg-image-main d-flex align-items-center img-layout"[m
+         style="height: 500px; background-image: url(@Model.Background);">[m
+[31m-        <form class="container border border-white border-sm-0 rounded-3 w-75 bg-white py-3" action="#" method="GET">[m
+[32m+[m[32m        <form class="container border border-white border-sm-0 rounded-3 w-75 bg-white py-3" asp-page-handler="results" method="GET">[m
+             <!-- Trip type, seat class, no. of passenger, & bags -->[m
+             <div class="row row-cols-1 row-cols-md-3 gy-2">[m
+                 <!-- Trip type -->[m
+[1mdiff --git a/Pages/Travel/landingpage.cshtml.cs b/Pages/Travel/landingpage.cshtml.cs[m
+[1mindex 2e77a29..49001c1 100644[m
+[1m--- a/Pages/Travel/landingpage.cshtml.cs[m
+[1m+++ b/Pages/Travel/landingpage.cshtml.cs[m
+[36m@@ -1,19 +1,31 @@[m
+ using Microsoft.AspNetCore.Mvc.RazorPages;[m
+ using System.Collections.Generic;[m
+ using System;[m
+[32m+[m[32musing static System.Console;[m
+ using OTA.Classes;[m
+[32m+[m[32musing OTA.Pages;[m
+ using Microsoft.AspNetCore.Mvc;[m
+[32m+[m[32musing System.Text.Json;[m
+[32m+[m[32musing OTA.Model;[m
+ [m
+ namespace OTA.Pages[m
+ {[m
+     public class LandingPagePageModel : PageModel[m
+     {[m
+[32m+[m[32m        [BindProperty(SupportsGet = true)][m
+[32m+[m[32m        public string Adult { get; set; }[m
+[32m+[m[32m        [BindProperty(SupportsGet = true)][m
+[32m+[m[32m        public string Child { get; set; }[m
+[32m+[m[32m        [BindProperty(SupportsGet = true)][m
+[32m+[m[32m        public string Infant { get; set; }[m
+[32m+[m[32m        private NumberOfPassenger numberOfPassenger;[m
+         public string Background { get; private set; }[m
+         // This property is accessed by "landingpage" page to get "Suggested flights" data.[m
+         public IEnumerable<SuggestedFlight> SuggestedFlights { get; private set; }[m
+ [m
+         public void OnGet()[m
+         {[m
+[32m+[m
+             ViewData["Title"] = "Travel OTA Name";[m
+             // Data of "SuggestedFlights" should come from the DB.[m
+             SuggestedFlights = new SuggestedFlight[] {[m
+[36m@@ -27,8 +39,29 @@[m [mnamespace OTA.Pages[m
+                 SuggestedFlight.Make("../misc/images/as_suggested_flights_thumbnails/hongkong.jpg", "Hongkong", "0")[m
+             };[m
+ [m
+[31m-            Background = "../misc/images/as_backgrounds/japan.jpg";[m
+[32m+[m[32m            Background = "../misc/images/as_backgrounds/japan.jpg";[m[41m   [m
+         }[m
+[32m+[m
+[32m+[m[32m        public IActionResult OnGetResults(string trip_type, string cabin_class,[m[41m [m
+[32m+[m[32m            string from, string to, string departure, string @return)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            this.numberOfPassenger = new NumberOfPassenger(this.Adult, this.Child, this.Infant);[m
+[32m+[m
+[32m+[m[32m            TempData["NumberOfPassenger"] = JsonSerializer.Serialize(this.numberOfPassenger);[m
+[32m+[m
+[32m+[m[32m            // But, for now, only "from" & "to" are used as search criteria.[m[41m [m
+[32m+[m[32m            return RedirectToPage("SecondProcess",[m[41m [m
+[32m+[m[32m                "Query",[m
+[32m+[m[32m                new {[m
+[32m+[m[32m                    trip_type = trip_type,[m
+[32m+[m[32m                    cabin_class = cabin_class,[m
+[32m+[m[32m                    from = from,[m
+[32m+[m[32m                    to = to,[m
+[32m+[m[32m                    departure = departure,[m
+[32m+[m[32m                    @return = @return[m
+[32m+[m[32m                });[m
+[32m+[m[32m        }[m
+[32m+[m
+     }[m
+ }[m
+ [m
+[1mdiff --git a/Program.cs b/Program.cs[m
+[1mindex f57e644..11f9e71 100644[m
+[1m--- a/Program.cs[m
+[1m+++ b/Program.cs[m
+[36m@@ -13,6 +13,7 @@[m [mnamespace OTA[m
+     {[m
+         public static void Main(string[] args)[m
+         {[m
+[32m+[m[41m            [m
+             CreateHostBuilder(args).Build().Run();[m
+         }[m
+ [m
+[1mdiff --git a/Startup.cs b/Startup.cs[m
+[1mindex 1b04ace..7bc00d9 100644[m
+[1m--- a/Startup.cs[m
+[1m+++ b/Startup.cs[m
+[36m@@ -5,6 +5,7 @@[m [musing System.Threading.Tasks;[m
+ using Microsoft.AspNetCore.Builder;[m
+ using Microsoft.AspNetCore.Hosting;[m
+ using Microsoft.AspNetCore.Http;[m
+[32m+[m[32musing Microsoft.AspNetCore.Mvc;[m
+ using Microsoft.Extensions.DependencyInjection;[m
+ using Microsoft.Extensions.Hosting;[m
+ [m
+[36m@@ -17,6 +18,7 @@[m [mnamespace OTA[m
+         public void ConfigureServices(IServiceCollection services)[m
+         {[m
+             services.AddRazorPages();[m
+[32m+[m[32m            services.AddMvc();[m
+         }[m
+ [m
+         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.[m
+[36m@@ -31,7 +33,6 @@[m [mnamespace OTA[m
+                 //To enable HTTP Strict Transport Security (HSTS)[m
+                 app.UseHsts();[m
+             }[m
+[31m-        [m
+             // HTTP request[m
+             app.UseRouting();[m
+             // redirection of HTTP request to HTTPS[m
+[1mdiff --git a/bin/Debug/net5.0/OTA.Views.dll b/bin/Debug/net5.0/OTA.Views.dll[m
+[1mindex abc600b..2163695 100644[m
+Binary files a/bin/Debug/net5.0/OTA.Views.dll and b/bin/Debug/net5.0/OTA.Views.dll differ
+[1mdiff --git a/bin/Debug/net5.0/OTA.Views.pdb b/bin/Debug/net5.0/OTA.Views.pdb[m
+[1mindex 4b58762..277dcc0 100644[m
+Binary files a/bin/Debug/net5.0/OTA.Views.pdb and b/bin/Debug/net5.0/OTA.Views.pdb differ
+[1mdiff --git a/bin/Debug/net5.0/OTA.deps.json b/bin/Debug/net5.0/OTA.deps.json[m
+[1mindex 6aa202b..4e42692 100644[m
+[1m--- a/bin/Debug/net5.0/OTA.deps.json[m
+[1m+++ b/bin/Debug/net5.0/OTA.deps.json[m
+[36m@@ -25,6 +25,9 @@[m
+     ".NETCoreApp,Version=v5.0": {[m
+       "OTA/1.0.0": {[m
+         "dependencies": {[m
+[32m+[m[32m          "Microsoft.EntityFrameworkCore.Design": "5.0.2",[m
+[32m+[m[32m          "MySql.EntityFrameworkCore": "5.0.0-m8.0.23",[m
+[32m+[m[32m          "Newtonsoft.Json": "12.0.3",[m
+           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",[m
+           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",[m
+           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",[m
+[36m@@ -102,10 +105,10 @@[m
+           "Microsoft.AspNetCore.StaticFiles": "5.0.0.0",[m
+           "Microsoft.AspNetCore.WebSockets": "5.0.0.0",[m
+           "Microsoft.AspNetCore.WebUtilities": "5.0.0.0",[m
+[31m-          "Microsoft.CSharp": "5.0.0.0",[m
+[31m-          "Microsoft.Extensions.Caching.Abstractions": "5.0.0.0",[m
+[31m-          "Microsoft.Extensions.Caching.Memory": "5.0.0.0",[m
+[31m-          "Microsoft.Extensions.Configuration.Abstractions": "5.0.0.0",[m
+[32m+[m[32m          "Microsoft.CSharp.Reference": "5.0.0.0",[m
+[32m+[m[32m          "Microsoft.Extensions.Caching.Abstractions.Reference": "5.0.0.0",[m
+[32m+[m[32m          "Microsoft.Extensions.Caching.Memory.Reference": "5.0.0.0",[m
+[32m+[m[32m          "Microsoft.Extensions.Configuration.Abstractions.Reference": "5.0.0.0",[m
+           "Microsoft.Extensions.Configuration.Binder": "5.0.0.0",[m
+           "Microsoft.Extensions.Configuration.CommandLine": "5.0.0.0",[m
+           "Microsoft.Extensions.Configuration": "5.0.0.0",[m
+[36m@@ -116,8 +119,7 @@[m
+           "Microsoft.Extensions.Configuration.KeyPerFile": "5.0.0.0",[m
+           "Microsoft.Extensions.Configuration.UserSecrets": "5.0.0.0",[m
+           "Microsoft.Extensions.Configuration.Xml": "5.0.0.0",[m
+[31m-          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0.0",[m
+[31m-          "Microsoft.Extensions.DependencyInjection": "5.0.0.0",[m
+[32m+[m[32m          "Microsoft.Extensions.DependencyInjection.Abstractions.Reference": "5.0.0.0",[m
+           "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": "5.0.0.0",[m
+           "Microsoft.Extensions.Diagnostics.HealthChecks": "5.0.0.0",[m
+           "Microsoft.Extensions.FileProviders.Abstractions": "5.0.0.0",[m
+[36m@@ -132,19 +134,19 @@[m
+           "Microsoft.Extensions.Identity.Stores": "5.0.0.0",[m
+           "Microsoft.Extensions.Localization.Abstractions": "5.0.0.0",[m
+           "Microsoft.Extensions.Localization": "5.0.0.0",[m
+[31m-          "Microsoft.Extensions.Logging.Abstractions": "5.0.0.0",[m
+[32m+[m[32m          "Microsoft.Extensions.Logging.Abstractions.Reference": "5.0.0.0",[m
+           "Microsoft.Extensions.Logging.Configuration": "5.0.0.0",[m
+           "Microsoft.Extensions.Logging.Console": "5.0.0.0",[m
+           "Microsoft.Extensions.Logging.Debug": "5.0.0.0",[m
+[31m-          "Microsoft.Extensions.Logging": "5.0.0.0",[m
+[32m+[m[32m          "Microsoft.Extensions.Logging.Reference": "5.0.0.0",[m
+           "Microsoft.Extensions.Logging.EventLog": "5.0.0.0",[m
+           "Microsoft.Extensions.Logging.EventSource": "5.0.0.0",[m
+           "Microsoft.Extensions.Logging.TraceSource": "5.0.0.0",[m
+           "Microsoft.Extensions.ObjectPool": "5.0.0.0",[m
+           "Microsoft.Extensions.Options.ConfigurationExtensions": "5.0.0.0",[m
+           "Microsoft.Extensions.Options.DataAnnotations": "5.0.0.0",[m
+[31m-          "Microsoft.Extensions.Options": "5.0.0.0",[m
+[31m-          "Microsoft.Extensions.Primitives": "5.0.0.0",[m
+[32m+[m[32m          "Microsoft.Extensions.Options.Reference": "5.0.0.0",[m
+[32m+[m[32m          "Microsoft.Extensions.Primitives.Reference": "5.0.0.0",[m
+           "Microsoft.Extensions.WebEncoders": "5.0.0.0",[m
+           "Microsoft.JSInterop": "5.0.0.0",[m
+           "Microsoft.Net.Http.Headers": "5.0.0.0",[m
+[36m@@ -155,13 +157,13 @@[m
+           "mscorlib": "4.0.0.0",[m
+           "netstandard": "2.1.0.0",[m
+           "System.AppContext": "5.0.0.0",[m
+[31m-          "System.Buffers": "5.0.0.0",[m
+[32m+[m[32m          "System.Buffers.Reference": "5.0.0.0",[m
+           "System.Collections.Concurrent": "5.0.0.0",[m
+           "System.Collections": "5.0.0.0",[m
+[31m-          "System.Collections.Immutable": "5.0.0.0",[m
+[32m+[m[32m          "System.Collections.Immutable.Reference": "5.0.0.0",[m
+           "System.Collections.NonGeneric": "5.0.0.0",[m
+           "System.Collections.Specialized": "5.0.0.0",[m
+[31m-          "System.ComponentModel.Annotations": "5.0.0.0",[m
+[32m+[m[32m          "System.ComponentModel.Annotations.Reference": "5.0.0.0",[m
+           "System.ComponentModel.DataAnnotations": "4.0.0.0",[m
+           "System.ComponentModel": "5.0.0.0",[m
+           "System.ComponentModel.EventBasedAsync": "5.0.0.0",[m
+[36m@@ -175,7 +177,6 @@[m
+           "System.Data": "4.0.0.0",[m
+           "System.Diagnostics.Contracts": "5.0.0.0",[m
+           "System.Diagnostics.Debug": "5.0.0.0",[m
+[31m-          "System.Diagnostics.DiagnosticSource": "5.0.0.0",[m
+           "System.Diagnostics.EventLog": "5.0.0.0",[m
+           "System.Diagnostics.FileVersionInfo": "5.0.0.0",[m
+           "System.Diagnostics.Process": "5.0.0.0",[m
+[36m@@ -210,7 +211,7 @@[m
+           "System.Linq.Expressions": "5.0.0.0",[m
+           "System.Linq.Parallel": "5.0.0.0",[m
+           "System.Linq.Queryable": "5.0.0.0",[m
+[31m-          "System.Memory": "5.0.0.0",[m
+[32m+[m[32m          "System.Memory.Reference": "5.0.0.0",[m
+           "System.Net": "4.0.0.0",[m
+           "System.Net.Http": "5.0.0.0",[m
+           "System.Net.Http.Json": "5.0.0.0",[m
+[36m@@ -259,7 +260,7 @@[m
+           "System.Runtime.Serialization.Json": "5.0.0.0",[m
+           "System.Runtime.Serialization.Primitives": "5.0.0.0",[m
+           "System.Runtime.Serialization.Xml": "5.0.0.0",[m
+[31m-          "System.Security.AccessControl": "5.0.0.0",[m
+[32m+[m[32m          "System.Security.AccessControl.Reference": "5.0.0.0",[m
+           "System.Security.Claims": "5.0.0.0",[m
+           "System.Security.Cryptography.Algorithms": "5.0.0.0",[m
+           "System.Security.Cryptography.Cng": "5.0.0.0",[m
+[36m@@ -269,13 +270,13 @@[m
+           "System.Security.Cryptography.X509Certificates": "5.0.0.0",[m
+           "System.Security.Cryptography.Xml": "5.0.0.0",[m
+           "System.Security": "4.0.0.0",[m
+[31m-          "System.Security.Permissions": "5.0.0.0",[m
+[32m+[m[32m          "System.Security.Permissions.Reference": "5.0.0.0",[m
+           "System.Security.Principal": "5.0.0.0",[m
+[31m-          "System.Security.Principal.Windows": "5.0.0.0",[m
+[32m+[m[32m          "System.Security.Principal.Windows.Reference": "5.0.0.0",[m
+           "System.Security.SecureString": "5.0.0.0",[m
+           "System.ServiceModel.Web": "4.0.0.0",[m
+           "System.ServiceProcess": "4.0.0.0",[m
+[31m-          "System.Text.Encoding.CodePages": "5.0.0.0",[m
+[32m+[m[32m          "System.Text.Encoding.CodePages.Reference": "5.0.0.0",[m
+           "System.Text.Encoding": "5.0.0.0",[m
+           "System.Text.Encoding.Extensions": "5.0.0.0",[m
+           "System.Text.Encodings.Web": "5.0.0.0",[m
+[36m@@ -297,7 +298,7 @@[m
+           "System.Web": "4.0.0.0",[m
+           "System.Web.HttpUtility": "5.0.0.0",[m
+           "System.Windows": "4.0.0.0",[m
+[31m-          "System.Windows.Extensions": "5.0.0.0",[m
+[32m+[m[32m          "System.Windows.Extensions.Reference": "5.0.0.0",[m
+           "System.Xml": "4.0.0.0",[m
+           "System.Xml.Linq": "4.0.0.0",[m
+           "System.Xml.ReaderWriter": "5.0.0.0",[m
+[36m@@ -316,6 +317,358 @@[m
+           "OTA.dll": {}[m
+         }[m
+       },[m
+[32m+[m[32m      "BouncyCastle.NetCore/1.8.5": {[m
+[32m+[m[32m        "runtime": {[m
+[32m+[m[32m          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {[m
+[32m+[m[32m            "assemblyVersion": "1.8.5.0",[m
+[32m+[m[32m            "fileVersion": "1.8.19031.1"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "compile": {[m
+[32m+[m[32m          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {}[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "Google.Protobuf/3.11.4": {[m
+[32m+[m[32m        "dependencies": {[m
+[32m+[m[32m          "System.Memory": "4.5.3"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "runtime": {[m
+[32m+[m[32m          "lib/netstandard2.0/Google.Protobuf.dll": {[m
+[32m+[m[32m            "assemblyVersion": "3.11.4.0",[m
+[32m+[m[32m            "fileVersion": "3.11.4.0"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "compile": {[m
+[32m+[m[32m          "lib/netstandard2.0/Google.Protobuf.dll": {}[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "Humanizer.Core/2.8.26": {[m
+[32m+[m[32m        "runtime": {[m
+[32m+[m[32m          "lib/netstandard2.0/Humanizer.dll": {[m
+[32m+[m[32m            "assemblyVersion": "2.8.0.0",[m
+[32m+[m[32m            "fileVersion": "2.8.26.1919"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "K4os.Compression.LZ4/1.1.11": {[m
+[32m+[m[32m        "dependencies": {[m
+[32m+[m[32m          "System.Memory": "4.5.3"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "runtime": {[m
+[32m+[m[32m          "lib/netstandard2.0/K4os.Compression.LZ4.dll": {[m
+[32m+[m[32m            "assemblyVersion": "1.1.11.0",[m
+[32m+[m[32m            "fileVersion": "1.1.11.0"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "compile": {[m
+[32m+[m[32m          "lib/netstandard2.0/K4os.Compression.LZ4.dll": {}[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "K4os.Compression.LZ4.Streams/1.1.11": {[m
+[32m+[m[32m        "dependencies": {[m
+[32m+[m[32m          "K4os.Compression.LZ4": "1.1.11",[m
+[32m+[m[32m          "K4os.Hash.xxHash": "1.0.6"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "runtime": {[m
+[32m+[m[32m          "lib/netstandard2.0/K4os.Compression.LZ4.Streams.dll": {[m
+[32m+[m[32m            "assemblyVersion": "1.1.11.0",[m
+[32m+[m[32m            "fileVersion": "1.1.11.0"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "compile": {[m
+[32m+[m[32m          "lib/netstandard2.0/K4os.Compression.LZ4.Streams.dll": {}[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "K4os.Hash.xxHash/1.0.6": {[m
+[32m+[m[32m        "dependencies": {[m
+[32m+[m[32m          "System.Memory": "4.5.3"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "runtime": {[m
+[32m+[m[32m          "lib/netstandard2.0/K4os.Hash.xxHash.dll": {[m
+[32m+[m[32m            "assemblyVersion": "1.0.6.0",[m
+[32m+[m[32m            "fileVersion": "1.0.6.0"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "compile": {[m
+[32m+[m[32m          "lib/netstandard2.0/K4os.Hash.xxHash.dll": {}[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "Microsoft.CSharp/4.7.0": {},[m
+[32m+[m[32m      "Microsoft.EntityFrameworkCore/5.0.2": {[m
+[32m+[m[32m        "dependencies": {[m
+[32m+[m[32m          "Microsoft.EntityFrameworkCore.Abstractions": "5.0.2",[m
+[32m+[m[32m          "Microsoft.EntityFrameworkCore.Analyzers": "5.0.2",[m
+[32m+[m[32m          "Microsoft.Extensions.Caching.Memory": "5.0.0",[m
+[32m+[m[32m          "Microsoft.Extensions.DependencyInjection": "5.0.1",[m
+[32m+[m[32m          "Microsoft.Extensions.Logging": "5.0.0",[m
+[32m+[m[32m          "System.Collections.Immutable": "5.0.0",[m
+[32m+[m[32m          "System.ComponentModel.Annotations": "5.0.0",[m
+[32m+[m[32m          "System.Diagnostics.DiagnosticSource": "5.0.1"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "runtime": {[m
+[32m+[m[32m          "lib/netstandard2.1/Microsoft.EntityFrameworkCore.dll": {[m
+[32m+[m[32m            "assemblyVersion": "5.0.2.0",[m
+[32m+[m[32m            "fileVersion": "5.0.220.61114"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "compile": {[m
+[32m+[m[32m          "lib/netstandard2.1/Microsoft.EntityFrameworkCore.dll": {}[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "Microsoft.EntityFrameworkCore.Abstractions/5.0.2": {[m
+[32m+[m[32m        "runtime": {[m
+[32m+[m[32m          "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Abstractions.dll": {[m
+[32m+[m[32m            "assemblyVersion": "5.0.2.0",[m
+[32m+[m[32m            "fileVersion": "5.0.220.61114"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "compile": {[m
+[32m+[m[32m          "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Abstractions.dll": {}[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "Microsoft.EntityFrameworkCore.Analyzers/5.0.2": {},[m
+[32m+[m[32m      "Microsoft.EntityFrameworkCore.Design/5.0.2": {[m
+[32m+[m[32m        "dependencies": {[m
+[32m+[m[32m          "Humanizer.Core": "2.8.26",[m
+[32m+[m[32m          "Microsoft.CSharp": "4.7.0",[m
+[32m+[m[32m          "Microsoft.EntityFrameworkCore.Relational": "5.0.2"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "runtime": {[m
+[32m+[m[32m          "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Design.dll": {[m
+[32m+[m[32m            "assemblyVersion": "5.0.2.0",[m
+[32m+[m[32m            "fileVersion": "5.0.220.61114"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "Microsoft.EntityFrameworkCore.Relational/5.0.2": {[m
+[32m+[m[32m        "dependencies": {[m
+[32m+[m[32m          "Microsoft.EntityFrameworkCore": "5.0.2",[m
+[32m+[m[32m          "Microsoft.Extensions.Configuration.Abstractions": "5.0.0"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "runtime": {[m
+[32m+[m[32m          "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Relational.dll": {[m
+[32m+[m[32m            "assemblyVersion": "5.0.2.0",[m
+[32m+[m[32m            "fileVersion": "5.0.220.61114"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "compile": {[m
+[32m+[m[32m          "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Relational.dll": {}[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "Microsoft.Extensions.Caching.Abstractions/5.0.0": {[m
+[32m+[m[32m        "dependencies": {[m
+[32m+[m[32m          "Microsoft.Extensions.Primitives": "5.0.0"[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "Microsoft.Extensions.Caching.Memory/5.0.0": {[m
+[32m+[m[32m        "dependencies": {[m
+[32m+[m[32m          "Microsoft.Extensions.Caching.Abstractions": "5.0.0",[m
+[32m+[m[32m          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",[m
+[32m+[m[32m          "Microsoft.Extensions.Logging.Abstractions": "5.0.0",[m
+[32m+[m[32m          "Microsoft.Extensions.Options": "5.0.0",[m
+[32m+[m[32m          "Microsoft.Extensions.Primitives": "5.0.0"[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "Microsoft.Extensions.Configuration.Abstractions/5.0.0": {[m
+[32m+[m[32m        "dependencies": {[m
+[32m+[m[32m          "Microsoft.Extensions.Primitives": "5.0.0"[m
+[32m+[m[32m        }[m
+[32m+[m[32m      },[m
+[32m+[m[32m      "Microsoft.Extensions.DependencyInjection/5.0.1": {[m
+[32m+[m[32m        "dependencies": {[m
+[32m+[m[32m          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "runtime": {[m
+[32m+[m[32m          "lib/net5.0/Microsoft.Extensions.DependencyInjection.dll": {[m
+[32m+[m[32m            "assemblyVersion": "5.0.0.1",[m
+[32m+[m[32m            "fileVersion": "5.0.120.57516"[m
+[32m+[m[32m          }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        "compile": {[m
+[32m+[m[32m          "li

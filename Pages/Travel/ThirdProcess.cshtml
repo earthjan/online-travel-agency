@@ -1,14 +1,15 @@
-@page
+@page "{handler?}"
 @model OTA.Pages.ThirdProcessPageModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <main class="container-fluid">
-    <form action="#" method="GET" class="row row-cols-1 justify-content-center">
+    <form asp-page-handler="book" method="POST" class="row row-cols-1 justify-content-center">
         <!-- Title -->
         <div class="col py-3 pt-lg-5 col-lg-9">
             <div class="container-sm">
-                <span class="my-fs-xxlarge fw-bold">Manila</span> <!-- dynamic value -->
+                <span class="my-fs-xxlarge fw-bold">@Model.PassengersService.ChosenService.Origin</span> <!-- dynamic value -->
                 <span class="my-fs-xxlarge">→</span>
-                <span class="my-fs-xxlarge fw-bold">Tokyo and back</span> <!-- "tokyo" is a dynamic value -->
+                <span class="my-fs-xxlarge fw-bold">@Model.PassengersService.ChosenService.Destination and back</span> <!-- "tokyo" is a dynamic value -->
             </div>
         </div>
         <!-- Flight details -->
@@ -38,15 +39,17 @@
                                 <div class="row row-cols-auto flex-column">
                                     <!-- Day and date -->
                                     <div class="col">
-                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>
+                                        <h6 class="fw-bold mb-0">@Model.PassengersService.ChosenService.DepartureSchedule</h6>
                                     </div>
                                     <!-- Time -->
                                     <div class="col">
-                                        <h6>9:00 PM</h6>
+                                        <h6>@Model.PassengersService.ChosenService.DepartureSchedule</h6>
                                     </div>
                                     <!-- Location -->
                                     <div class="col py-3">
-                                        <h6><span class="fw-bold">Manila</span> <span class="text-secondary">MNL</span>
+                                        <h6>
+                                            <span class="fw-bold">@Model.PassengersService.ChosenService.Origin</span> 
+                                            <span class="text-secondary">@Model.PassengersService.ChosenService.Origin</span>
                                         </h6>
                                     </div>
                                 </div>
@@ -54,22 +57,23 @@
                             <!-- Flight duration -->
                             <div class="col d-flex flex-column justify-content-center align-items-center">
                                 <span class="fs-1 my-icon-from_to_flight"></span>
-                                <span>27h 10m</span>
+                                <span>@Model.PassengersService.ChosenService.Duration</span>
                             </div>
                             <!-- To schedule -->
                             <div class="col d-flex justify-content-center">
                                 <div class="row row-cols-auto flex-column">
                                     <!-- Day and date -->
                                     <div class="col">
-                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>
+                                        <h6 class="fw-bold mb-0">@Model.PassengersService.ChosenService.ArrivalSchedule</h6>
                                     </div>
                                     <!-- Time -->
                                     <div class="col">
-                                        <h6>9:00 PM</h6>
+                                        <h6>@Model.PassengersService.ChosenService.ArrivalSchedule</h6>
                                     </div>
                                     <!-- Location -->
                                     <div class="col py-3">
-                                        <h6><span class="fw-bold">Manila</span> <span class="text-secondary">MNL</span>
+                                        <h6><span class="fw-bold">@Model.PassengersService.ChosenService.Destination</span> 
+                                        <span class="text-secondary">@Model.PassengersService.ChosenService.Destination</span>
                                         </h6>
                                     </div>
                                 </div>
@@ -98,15 +102,16 @@
                                 <div class="row row-cols-auto flex-column">
                                     <!-- Day and date -->
                                     <div class="col">
-                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>
+                                        <h6 class="fw-bold mb-0">@Model.PassengersService.ChosenService.ArrivalSchedule</h6>
                                     </div>
                                     <!-- Time -->
                                     <div class="col">
-                                        <h6>9:00 PM</h6>
+                                        <h6>@Model.PassengersService.ChosenService.ArrivalSchedule</h6>
                                     </div>
                                     <!-- Location -->
                                     <div class="col py-3">
-                                        <h6><span class="fw-bold">Manila</span> <span class="text-secondary">MNL</span>
+                                        <h6><span class="fw-bold">@Model.PassengersService.ChosenService.Destination</span> 
+                                        <span class="text-secondary">@Model.PassengersService.ChosenService.Destination</span>
                                         </h6>
                                     </div>
                                 </div>
@@ -114,22 +119,24 @@
                             <!-- Flight duration -->
                             <div class="col d-flex flex-column justify-content-center align-items-center">
                                 <span class="fs-1 my-icon-from_to_flight"></span>
-                                <span>27h 10m</span>
+                                <span>@Model.PassengersService.ChosenService.Duration</span>
                             </div>
                             <!-- To schedule -->
                             <div class="col d-flex justify-content-center">
                                 <div class="row row-cols-auto flex-column">
                                     <!-- Day and date -->
                                     <div class="col">
-                                        <h6 class="fw-bold mb-0">Mon Jan 1</h6>
+                                        <h6 class="fw-bold mb-0">@Model.PassengersService.ChosenService.DepartureSchedule</h6>
                                     </div>
                                     <!-- Time -->
                                     <div class="col">
-                                        <h6>9:00 PM</h6>
+                                        <h6>@Model.PassengersService.ChosenService.DepartureSchedule</h6>
                                     </div>
                                     <!-- Location -->
                                     <div class="col py-3">
-                                        <h6><span class="fw-bold">Manila</span> <span class="text-secondary">MNL</span>
+                                        <h6>
+                                            <span class="fw-bold">@Model.PassengersService.ChosenService.Origin</span> 
+                                            <span class="text-secondary">@Model.PassengersService.ChosenService.Origin</span>
                                         </h6>
                                     </div>
                                 </div>
@@ -141,7 +148,7 @@
                         <div class="row row-cols-2">
                             <!-- Seat class -->
                             <div class="col d-flex align-items-center">
-                                <h6 class="border border-dark rounded-pill px-1 py-1 my-0">Economy</h6>
+                                <h6 class="border border-dark rounded-pill px-1 py-1 my-0">@Model.PassengersService.ChosenService.CabinClass</h6>
                             </div>
                             <!-- Details -->
                             <!-- There's no time to do this extra. -->
@@ -156,7 +163,7 @@
                 </div>
             </div>
             <!-- Price -->
-            <div class="container align-self-end flex-grow-1">
+            @* <div class="container align-self-end flex-grow-1">
                 <div class="row row-cols-2 gy-3">
                     <!-- this pricing details/values are determined by an object containing the pricing details/values. -->
                     <div class="col">2x Adult</div> <!-- dynamic value -->
@@ -169,7 +176,7 @@
                     <div class="col text-end my-fs-xlarge">₱ 99.99</div>
                     <!-- dynamic value -->
                 </div>
-            </div>
+            </div> *@
         </div>
         <!-- Contact forms -->
         <div class="col col-lg-9">
@@ -177,20 +184,30 @@
                 <div class="col-lg-9">
                     <div class="text-center fw-bold">Contact details</div>
                     <label class="form-label" for="email">Email</label>
-                    <input class="form-control" type="email" id="email" placeholder="your@email.com" name="email">
+                    <input class="form-control" type="email" id="email" placeholder="your@email.com" name="email" required>
                     <label for="phone">Phone</label>
                     <div class="input-group flex-nowrap justify-content-center">
                         <span class="input-group-text border-end-0 rounded-start bg-white text-black-50">PH
                             +63</span>
-                        <input class="form-control border border-1 rounded-end bg-white" type="tel" id="phone"
-                            name="phone">
+                        <input class="form-control border border-1 rounded-end bg-white" type="number" id="phone"
+                            name="phone" maxlength="11" required>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Passenger forms -->
-        @for (int i = 0; i < 2; i++)
+        @for (int i = 0; i < @Model.PassengersService.NumberOfPassenger.GetTotal(); i++)
         {
+            string givenName = "given_name" + i,
+                        surname = "surname" + i,
+                        nationality = "nationality" + i,
+                        gender = "gender" + i,
+                        dateOfBirth = "date_of_birth" + i,
+                        passportOrIDNumber = "passport_or_id_number" + i,
+                        passportOrIDExpiryDate = "passport_or_id_expiry_date" + i,
+                        cabinBag = "cabin_bag" + i,
+                        checkedBag = "checked_bag" + i;
+                        
             <div class="col col-lg-9">
                 <div class="container border rounded-3 mt-3 py-4">
                     <!-- dynamic section based on the number of booking passenger of a service. -->
@@ -200,24 +217,24 @@
                             Passenger
                         </div>
                         <div class="col d-flex flex-column">
-                            <label class="form-label" for="given_names">Given names</label>
+                            <label class="form-label" for="@givenName">Given names</label>
                             <input class="form-control" type="text" id="given_names" placeholder="e.g. Oliver James"
-                                name="given_name" required>
+                                name="@givenName" required>
                         </div>
                         <div class="col d-flex flex-column">
-                            <label class="form-label" for="surnames">Surnames</label>
-                            <input class="form-control" type="text" id="surnames" placeholder="e.g. Brown" name="surname"
+                            <label class="form-label" for="@@surname">Surnames</label>
+                            <input class="form-control" type="text" id="surnames" placeholder="e.g. Brown" name="@surname"
                                 required>
                         </div>
                         <div class="col d-flex">
                             <div class="d-flex flex-column flex-grow-1">
                                 <label class="form-label" for="nationality">Nationality</label>
                                 <input class="form-control" type="text" id="nationality" placeholder="e.g. Filipino"
-                                    name="nationality" required>
+                                    name="@nationality" required>
                             </div>
                             <div class="d-flex flex-column flex-grow-1">
                                 <label class="form-label" for="gender">Gender</label>
-                                <select class="form-select flex-fill" id="gender" name="gender" required>
+                                <select class="form-select flex-fill" id="gender" name="@gender" required>
                                     <option class="selected">Male</option>
                                     <option>Female</option>
                                     <option>Others</option>
@@ -226,24 +243,19 @@
                         </div>
                         <div class="col d-flex flex-column">
                             <label class="form-label" for="date_of_birth">Date of birth</label>
-                            <input class="form-control" type="date" id="date_of_birth" name="date_of_birth" required>
+                            <input class="form-control" type="date" id="date_of_birth" name="@dateOfBirth" required>
                         </div>
                         <div class="col d-flex flex-column">
                             <label class="form-label" for="passport_or_id_number">Passport or ID number</label>
                             <input class="form-control" type="number" id="passport_or_id_number"
-                                placeholder="Passport or ID number" name="passport_or_id_number" required>
+                                placeholder="Passport or ID number" name="@passportOrIDNumber" required>
                         </div>
                         <div class="col d-flex flex-column">
                             <label class="form-label" for="passport_or_id_expiry_date"
                                 id="passport_or_id_expiry_form">Passport or ID expiry
                                 date</label>
                             <input class="form-control" type="date" id="passport_or_id_expiry_date"
-                                name="passport_or_id_expiry_date" required>
-                            <div class="d-flex">
-                                <input class="me-2 form-check-input" type="checkbox" id="no_expiry_date"
-                                    name="no_expiry_date">
-                                <label for="no_expiry_date">No expiry date</label>
-                            </div>
+                                name="@passportOrIDExpiryDate" required>
                         </div>
                         <!-- Baggage forms -->
                         <div class="w-100 py-2 border-top fw-bold mt-4">
@@ -259,17 +271,17 @@
                                 <div class="col-4 col-sm-auto d-flex justify-content-end justify-content-sm-end ">
                                     <button class="btn border bg-light rounded" style="width: 45px;" id="btn_dec_cabin_bag"
                                         type="button"
-                                        onclick="decrement('cabin_bag', 'btn_dec_cabin_bag', 'btn_inc_cabin_bag', 0)"> -
+                                        onclick="decrement('@cabinBag', 'btn_dec_cabin_bag', 'btn_inc_cabin_bag', 0)"> -
                                     </button>
                                 </div>
                                 <div class="col-4 col-md-3 col-xl-2">
-                                    <input type="number" class="form-control bg-white" id="cabin_bag" name="DYNAMIC VALUE"
+                                    <input type="number" class="form-control bg-white" id="@cabinBag" name="@cabinBag"
                                         value="0" readonly>
                                 </div>
                                 <div class="col-4 col-sm-auto d-flex justify-content-start justify-content-sm-start">
                                     <button class="btn border bg-light rounded" style="width: 45px;" id="btn_inc_cabin_bag"
                                         type="button"
-                                        onclick="increment('cabin_bag', 'btn_dec_cabin_bag', 'btn_inc_cabin_bag', 2)"> +
+                                        onclick="increment('@cabinBag', 'btn_dec_cabin_bag', 'btn_inc_cabin_bag', 2)"> +
                                     </button>
                                 </div>
                                 <div class="col text-center col-xl-12">
@@ -289,17 +301,17 @@
                                 <div class="col-4 col-sm-auto d-flex justify-content-end justify-content-sm-end ">
                                     <button class="btn border bg-light rounded" style="width: 45px;"
                                         id="btn_dec_checked_bag" type="button"
-                                        onclick="decrement('checked_bag', 'btn_dec_checked_bag', 'btn_inc_checked_bag', 0)">
+                                        onclick="decrement('@checkedBag', 'btn_dec_checked_bag', 'btn_inc_checked_bag', 0)">
                                         - </button>
                                 </div>
                                 <div class="col-4 col-md-3 col-xl-2">
-                                    <input type="number" class="form-control bg-white" id="checked_bag" name="DYNAMIC VALUE"
+                                    <input type="number" class="form-control bg-white" id="@checkedBag" name="@checkedBag"
                                         value="0" readonly>
                                 </div>
                                 <div class="col-4 col-sm-auto d-flex justify-content-start justify-content-sm-start">
                                     <button class="btn border bg-light rounded" style="width: 45px;"
                                         id="btn_inc_checked_bag" type="button"
-                                        onclick="increment('checked_bag', 'btn_dec_checked_bag', 'btn_inc_checked_bag', 1)">
+                                        onclick="increment('@checkedBag', 'btn_dec_checked_bag', 'btn_inc_checked_bag', 1)">
                                         + </button>
                                 </div>
                                 <div class="col text-center col-xl-12">
@@ -313,6 +325,8 @@
                 </div>
             </div>
         }
+        @* to determine the number of forms *@
+        <input type="hidden" value="@Model.PassengersService.NumberOfPassenger.GetTotal()"  name="total">
         <!-- Submit button -->
         <div class="col col-lg-9">
             <div class="d-flex mt-3">
