@@ -20,6 +20,19 @@ namespace OTA.Pages
         public List<Model.FlightService> FlightServices;
         public PassengersService passengersService = new PassengersService();
 
+        /// <summary>
+        /// Gets either from the homepage or this PageModel's page the user query for a service.
+        /// </summary>
+        /// <param name="isQuery">A param key from this PageModel's page form that indicates that a user is trying to query again another service by having the param value 'true'. <br/>
+        /// Helps to differentiate the query of this page against the one from the homepage.
+        /// </param>
+        /// <param name="trip_type">A param key of a form field for Fare type.</param>
+        /// <param name="cabin_class">A param key of a form field for Cabin class.</param>
+        /// <param name="from">A param key of a form field for Origin.</param>
+        /// <param name="to">A param key of a form field for Destination.</param>
+        /// <param name="departure">A param key of a form field for departure schedule.</param>
+        /// <param name="return">A param key of a form field for return schedule.</param>
+        /// <returns></returns>
         public IActionResult OnGetQuery(string isQuery, string trip_type, string cabin_class,
             string from, string to, string departure, string @return)
         {
