@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OTA.Model;
 
 namespace OTA
 {
@@ -18,7 +20,10 @@ namespace OTA
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            
             services.AddMvc();
+
+            services.AddDbContext<OTADBContext>(options => options.UseMySQL("server=localhost;database=ota;user=root;password=root"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

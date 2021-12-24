@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System.Linq;
 using OTA.Pages;
+using OTA.Classes;
 
 #nullable disable
 
@@ -229,27 +230,68 @@ namespace OTA.Model
                 return newTuple;
             }
         }
+    
+        /// <summary>
+        /// Uniquely gets the origins of all available flight services.
+        /// </summary>
+        /// <returns>List of unique origins</returns>
+        public List<string> GetOrigins()
+        {
+            string column = "*";
+            string table = "flight_service";
+
+            var flightServices = this.FlightServices.FromSqlRaw($"SELECT {column} FROM {table};").ToList();
+            
+            var origins = new List<string>();
+
+            flightServices.ForEach(flightService => {
+                origins.Add(flightService.Origin);
+            });
+
+            return origins.Distinct().ToList();
+        }
+
+        /// <summary>
+        /// Uniquely gets the destinations of all available flight services.
+        /// </summary>
+        /// <returns>List of unique destinations</returns>
+        public List<string> GetDestinations()
+        {
+            string column = "*";
+            string table = "flight_service";
+
+            var flightServices = this.FlightServices.FromSqlRaw($"SELECT {column} FROM {table};").ToList();
+            
+            var destinations = new List<string>();
+
+            flightServices.ForEach(flightService => {
+                destinations.Add(flightService.Destination);
+            });
+
+            return destinations.Distinct().ToList();
+        }
+
 
         public static bool InsertFlightServicePassenger(
-            string givenName, string middleName, string surname, 
-            string gender, string birthDate, string passportOrIDNo, 
+            string givenName, string middleName, string surname,
+            string gender, string birthDate, string passportOrIDNo,
             string passportOrIDExpiryDate, string email, string mobileNo)
         {
             using (var db = new OTADBContext())
             {
                 var newTuple = new FlightServicePassenger()
-                    {
-                        PassengerId = FourthProcessPageModel.generateCode(),
-                        GivenName = givenName,
-                        MiddleName = middleName,
-                        Surname = surname,
-                        Gender = gender,
-                        Birthdate = birthDate,
-                        PassportOrIdNo = passportOrIDNo,
-                        PassportOrIdExpiryDate = passportOrIDExpiryDate,
-                        Email = email,
-                        MobileNo = mobileNo
-                    };
+                {
+                    PassengerId = FourthProcessPageModel.generateCode(),
+                    GivenName = givenName,
+                    MiddleName = middleName,
+                    Surname = surname,
+                    Gender = gender,
+                    Birthdate = birthDate,
+                    PassportOrIdNo = passportOrIDNo,
+                    PassportOrIdExpiryDate = passportOrIDExpiryDate,
+                    Email = email,
+                    MobileNo = mobileNo
+                };
 
                 db.FlightServicePassengers.Add(newTuple);
 
@@ -264,14 +306,14 @@ namespace OTA.Model
             using (var db = new OTADBContext())
             {
                 var newTuple = new BaggageInformation()
-                    {
-                        PassengerId = passengerId,
-                        CabinBagCount = cabinBagCount,
-                        CheckedBagCount = checkedBagCount
-                    };
-                
+                {
+                    PassengerId = passengerId,
+                    CabinBagCount = cabinBagCount,
+                    CheckedBagCount = checkedBagCount
+                };
+
                 db.BaggageInformations.Add(newTuple);
-                
+
                 var affected = db.SaveChanges();
 
                 return (affected == 1);
@@ -283,11 +325,11 @@ namespace OTA.Model
             using (var db = new OTADBContext())
             {
                 var newTuple = new BookedPassenger()
-                    {
-                        BookedId = bookedId,
-                        PassengerId = passengerId
-                    };
-                
+                {
+                    BookedId = bookedId,
+                    PassengerId = passengerId
+                };
+
                 db.BookedPassengers.Add(newTuple);
 
                 var affected = db.SaveChanges();
@@ -301,11 +343,11 @@ namespace OTA.Model
             using (var db = new OTADBContext())
             {
                 var newTuple = new BookedFlightService()
-                    {
-                        FsId = fsId,
-                        Date = date
-                    };
-                
+                {
+                    FsId = fsId,
+                    Date = date
+                };
+
                 db.BookedFlightServices.Add(newTuple);
 
                 var affected = db.SaveChanges();
@@ -321,12 +363,12 @@ namespace OTA.Model
             using (var db = new OTADBContext())
             {
                 var newTuple = new BilledBookedFlightService()
-                    {
-                        BookingId = bookingId,
-                        Method = method,
-                        TotalPrice = totalPrice
-                    };
-                
+                {
+                    BookingId = bookingId,
+                    Method = method,
+                    TotalPrice = totalPrice
+                };
+
                 db.BilledBookedFlightServices.Add(newTuple);
 
                 var affected = db.SaveChanges();
@@ -342,13 +384,13 @@ namespace OTA.Model
             using (var db = new OTADBContext())
             {
                 var newTuple = new BillBaggage()
-                    {
-                        BillId = billId,
-                        BiId = biId,
-                        CabinBagPrice = cabinBagPrice,
-                        CheckedBagPrice = checkedBagPrice
-                    };
-                
+                {
+                    BillId = billId,
+                    BiId = biId,
+                    CabinBagPrice = cabinBagPrice,
+                    CheckedBagPrice = checkedBagPrice
+                };
+
                 db.BillBaggages.Add(newTuple);
 
                 var affected = db.SaveChanges();

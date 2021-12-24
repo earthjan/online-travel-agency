@@ -4,11 +4,11 @@
 // Formats the date object into "yyyy-mm-ddThh:mm" format.
 function formatDate(dateObject) {
     let newFormat = dateObject.getFullYear() +
-            "-" + dateObject.getMonth() +
-            "-" + dateObject.getDate() +
-            "T" + dateObject.getHours() +
-            ":" + dateObject.getMinutes(); 
-    return newFormat;   
+        "-" + dateObject.getMonth() +
+        "-" + dateObject.getDate() +
+        "T" + dateObject.getHours() +
+        ":" + dateObject.getMinutes();
+    return newFormat;
 }
 
 // Gets next week from the current date and time
@@ -102,5 +102,26 @@ function validatePassIDExpiry(hasExpiryID, noExpiryID) {
 function generateCode(textID) {
     let code = Math.floor(Math.random() * Math.floor(999999));
     document.getElementById(textID).innerHTML = code;
+}
 
+/**
+ * Sets both the hidden field value and the button text for origin.
+ * 
+ * @param {string} text 
+ * The origin from the modal that corresponds to origin button form.
+ */
+function setOriginLocation(text) {
+    setElementText("button_origin", text);
+    setInputValue("origin", text);
+}
+
+/**
+ * Sets both the hidden field value and the button text for destination.
+ * 
+ * @param {string} text 
+ * The destination from the modal that corresponds to destination button form.
+ */
+ function setDestinationLocation(text) {
+    setElementText("button_destination", text);
+    setInputValue("destination", text);
 }

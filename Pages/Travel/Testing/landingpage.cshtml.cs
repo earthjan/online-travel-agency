@@ -10,7 +10,7 @@ using OTA.Model;
 
 namespace OTA.Pages
 {
-    public class LandingPagePageModel : PageModel
+    public class TestLandingPagePageModel : PageModel
     {
         private readonly OTADBContext _context;
         
@@ -40,7 +40,7 @@ namespace OTA.Pages
 
         public List<string> Destinations { get; private set; }
         
-        public LandingPagePageModel(OTADBContext context)
+        public TestLandingPagePageModel(OTADBContext context)
         {
             this._context = context;
         }
