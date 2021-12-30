@@ -75,15 +75,25 @@
                             <!-- From location -->
                             <div class="col">
                                 <div class="input-group flex-nowrap justify-content-center">
-                                    <label class="input-group-text bg-white text-black-50" for="from">From</label>
-                                    <input class="form-control" type="text" name="from" id="from" required>
+                                    <button
+                                        class="btn border border-secondary flex-fill text-black-50 bg-white px-3 px-md-2"
+                                        type="button" data-bs-toggle="modal" data-bs-target="#origins"
+                                        id="button_origin">
+                                        Origin
+                                    </button>
+                                    <input type="hidden" name="origin" id="origin" value="null">
                                 </div>
                             </div>
                             <!-- To location -->
                             <div class="col">
                                 <div class="input-group flex-nowrap justify-content-center">
-                                    <label class="input-group-text bg-white text-black-50" for="to">To</label>
-                                    <input class="form-control" type="text" name="to" id="to" required>
+                                    <button
+                                        class="btn border border-secondary flex-fill text-black-50 bg-white px-3 px-md-2"
+                                        type="button" data-bs-toggle="modal" data-bs-target="#destinations"
+                                        id="button_destination">
+                                        Destination
+                                    </button>
+                                    <input type="hidden" name="destination" id="destination" value="null">
                                 </div>
                             </div>
                         </div>
@@ -96,19 +106,13 @@
                                     <label class="input-group-text bg-white text-black-50"
                                         for="departure">Departure</label>
                                     <input class="form-control" type="datetime-local" name="departure" id="departure"
-                                        required>
+                                        disabled>
                                 </div>
                             </div>
-                            <!-- Return schedule -->
-                            <div class="col">
-                                <div class="input-group flex-nowrap justify-content-center">
-                                    <label class="input-group-text bg-white text-black-50" for="return">Return</label>
-                                    <input class="form-control" type="datetime-local" name="return" id="return"
-                                        required>
-                                </div>
-                            </div>
+
                             <div class="col d-flex justify-content-center">
-                                <button class="btn border rounded bg-secondary-cs text-white" name="isQuery" value="true">
+                                <button class="btn border rounded bg-secondary-cs text-white" name="isQuery"
+                                    value="true">
                                     Search Flight
                                 </button>
                             </div>
@@ -118,37 +122,37 @@
                 <!-- Filter by -->
                 @* <section class="border border rounded-3 d-flex align-items-center mt-3 py-2 w-px-md-350">
                     <div class="container-fluid">
-                        <div class="row row-cols-1">
-                            <!-- Title -->
-                            <div class="col">
-                                <div class="fw-bold">Filter by</div>
-                            </div>
-                            <!-- By price -->
-                            <button class="col btn d-flex justify-content-between border-bottom">
-                                <span>Price</span>
-                                <span class="my-icon-more"></span>
-                            </button>
-                            <!-- By duration -->
-                            <button class="col btn d-flex justify-content-between border-bottom">
-                                <span>Duration</span>
-                                <span class="my-icon-more"></span>
-                            </button>
-
-                            <!-- By time-->
-                            <button class="col btn d-flex justify-content-between">
-                                <span>Time</span>
-                                <span class="my-icon-more"></span>
-                            </button>
-                        </div>
+                    <div class="row row-cols-1">
+                    <!-- Title -->
+                    <div class="col">
+                    <div class="fw-bold">Filter by</div>
                     </div>
-                </section> *@
+                    <!-- By price -->
+                    <button class="col btn d-flex justify-content-between border-bottom">
+                    <span>Price</span>
+                    <span class="my-icon-more"></span>
+                    </button>
+                    <!-- By duration -->
+                    <button class="col btn d-flex justify-content-between border-bottom">
+                    <span>Duration</span>
+                    <span class="my-icon-more"></span>
+                    </button>
+
+                    <!-- By time-->
+                    <button class="col btn d-flex justify-content-between">
+                    <span>Time</span>
+                    <span class="my-icon-more"></span>
+                    </button>
+                    </div>
+                    </div>
+                    </section> *@
                 <!-- Advertisement -->
                 @* There's no time to implement this extra. *@
                 @* <section class="border rounded-3 bg-light w-px-md-350 mt-3" style="height: 350px;">
                     <div class="container-fluid">
-                        advertisement
+                    advertisement
                     </div>
-                </section> *@
+                    </section> *@
             </div>
         </div>
         <!-- Second column -->
@@ -156,176 +160,178 @@
             <div class="row row-cols-1 gy-3">
                 <!-- A flight result -->
                 <!-- You can add more columns here for flight results. -->
-                @foreach (var service in @Model.FlightServices)
-                { 
-                    <div class="col border rounded-3 py-3">
-                        <div class="row row-cols-1 row-cols-lg-2">
-                            <!-- Flight Details -->
-                            <div class="col col-lg-9">
-                                <div class="row row-cols-1">
-                                    <!-- Departure -->
-                                    <div class="col border-bottom">
-                                        <!-- Departure title -->
-                                        <div class="row justify-content-center pb-3">
-                                            <div class="col-5 px-0">
-                                                <h6 class="text-end">Departure</h6>
-                                            </div>
-                                            <div class="col-2 px-0 d-flex justify-content-center">
-                                                <h6>:</h6>
-                                            </div>
-                                            <div class="col-5 px-0 d-flex">
-                                                <h6 class="align-self-stretch border border-dark rounded-pill px-1 my-0">
-                                                    2 stops</h6>
-                                            </div>
-                                        </div>
-                                        <!-- Departure schedule -->
-                                        <div class="row row-cols-3">
-                                            <!-- From schedule -->
-                                            <div class="col d-flex justify-content-center">
-                                                <div class="row row-cols-auto flex-column">
-                                                    <!-- Day and date -->
-                                                    <div class="col">
-                                                        <h6 class="fw-bold mb-0">@service.DepartureSchedule</h6>
-                                                    </div>
-                                                    <!-- Time -->
-                                                    <div class="col">
-                                                        <h6>@service.DepartureSchedule</h6>
-                                                    </div>
-                                                    <!-- Location -->
-                                                    <div class="col py-3">
-                                                        <h6><span class="fw-bold">@service.Origin</span> <span
-                                                                class="text-secondary">@service.Origin</span></h6>
-                                                    </div>
+                @if (Model.FlightServices.Count > 0)
+                {
+                    foreach (var service in @Model.FlightServices)
+                    {
+                        <div class="col border rounded-3 py-3">
+                            <div class="row row-cols-1 row-cols-lg-2">
+                                <!-- Flight Details -->
+                        <div class="col col-lg-9">
+                                    <div class="row row-cols-1">
+                                        <!-- Departure -->
+                                <div class="col border-bottom">
+                                            <!-- Departure title -->
+                                    <div class="row justify-content-center pb-3">
+                                                <div class="col-5 px-0">
+                                                    <h6 class="text-end">Departure</h6>
+                                                </div>
+                                                <div class="col-2 px-0 d-flex justify-content-center">
+                                                    <h6>:</h6>
+                                                </div>
+                                                <div class="col-5 px-0 d-flex">
+                                                    <h6 class="align-self-stretch border border-dark rounded-pill px-1 my-0">
+                                                        2 stops</h6>
                                                 </div>
                                             </div>
-                                            <!-- Flight duration -->
-                                            <div class="col d-flex flex-column justify-content-center align-items-center">
-                                                <span class="fs-1 my-icon-from_to_flight"></span>
-                                                <span>@service.Duration</span>
-                                            </div>
-                                            <!-- To schedule -->
-                                            <div class="col d-flex justify-content-center">
-                                                <div class="row row-cols-auto flex-column">
-                                                    <!-- Day and date -->
-                                                    <div class="col">
-                                                        <h6 class="fw-bold mb-0">@service.DepartureSchedule</h6>
-                                                    </div>
-                                                    <!-- Time -->
-                                                    <div class="col">
-                                                        <h6>@service.DepartureSchedule</h6>
-                                                    </div>
-                                                    <!-- Location -->
-                                                    <div class="col py-3">
-                                                        <h6><span class="fw-bold">@service.Destination</span> <span
-                                                                class="text-secondary">@service.Destination</span></h6>
+                                            <!-- Departure schedule -->
+                                    <div class="row row-cols-3">
+                                                <!-- From schedule -->
+                                        <div class="col d-flex justify-content-center">
+                                                    <div class="row row-cols-auto flex-column">
+                                                        <!-- Day and date -->
+                                                <div class="col">
+                                                            <h6 class="fw-bold mb-0">@service.DepartureSchedule</h6>
+                                                        </div>
+                                                        <!-- Time -->
+                                                <div class="col">
+                                                            <h6>@service.DepartureSchedule</h6>
+                                                        </div>
+                                                        <!-- Location -->
+                                                <div class="col py-3">
+                                                            <h6><span class="fw-bold">@service.Origin</span> <span
+                                                            class="text-secondary">@service.Origin</span></h6>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Arrival -->
-                                    <div class="col pt-3 border-bottom">
-                                        <!-- Arrival title -->
-                                        <div class="row justify-content-center pb-3">
-                                            <div class="col-5 px-0">
-                                                <h6 class="text-end">Arrival</h6>
-                                            </div>
-                                            <div class="col-2 px-0 d-flex justify-content-center">
-                                                <h6>:</h6>
-                                            </div>
-                                            <div class="col-5 px-0 d-flex">
-                                                <h6 class="align-self-stretch border border-dark rounded-pill px-1 my-0">
-                                                    2 stops</h6>
-                                            </div>
-                                        </div>
-                                        <!-- Arrival schedule -->
-                                        <div class="row row-cols-3 border-primary">
-                                            <!-- From schedule -->
-                                            <div class="col d-flex justify-content-center">
-                                                <div class="row row-cols-auto flex-column">
-                                                    <!-- Day and date -->
-                                                    <div class="col">
-                                                        <h6 class="fw-bold mb-0">@service.ArrivalSchedule</h6>
-                                                    </div>
-                                                    <!-- Time -->
-                                                    <div class="col">
-                                                        <h6>@service.ArrivalSchedule</h6>
-                                                    </div>
-                                                    <!-- Location -->
-                                                    <div class="col py-3">
-                                                        <h6><span class="fw-bold">@service.Destination</span> <span
-                                                                class="text-secondary">@service.Destination</span></h6>
-                                                    </div>
+                                                <!-- Flight duration -->
+                                        <div class="col d-flex flex-column justify-content-center align-items-center">
+                                                    <span class="fs-1 my-icon-from_to_flight"></span>
+                                                    <span>@service.Duration</span>
                                                 </div>
-                                            </div>
-                                            <!-- Flight duration -->
-                                            <div class="col d-flex flex-column justify-content-center align-items-center">
-                                                <span class="fs-1 my-icon-from_to_flight"></span>
-                                                <span>@service.Duration</span>
-                                            </div>
-                                            <!-- To schedule -->
-                                            <div class="col d-flex justify-content-center">
-                                                <div class="row row-cols-auto flex-column">
-                                                    <!-- Day and date -->
-                                                    <div class="col">
-                                                        <h6 class="fw-bold mb-0">@service.ArrivalSchedule</h6>
-                                                    </div>
-                                                    <!-- Time -->
-                                                    <div class="col">
-                                                        <h6>@service.ArrivalSchedule</h6>
-                                                    </div>
-                                                    <!-- Location -->
-                                                    <div class="col py-3">
-                                                        <h6><span class="fw-bold">@service.Origin</span> <span
-                                                                class="text-secondary">@service.Origin</span></h6>
+                                                <!-- To schedule -->
+                                        <div class="col d-flex justify-content-center">
+                                                    <div class="row row-cols-auto flex-column">
+                                                        <!-- Day and date -->
+                                                <div class="col">
+                                                            <h6 class="fw-bold mb-0">@service.DepartureSchedule</h6>
+                                                        </div>
+                                                        <!-- Time -->
+                                                <div class="col">
+                                                            <h6>@service.DepartureSchedule</h6>
+                                                        </div>
+                                                        <!-- Location -->
+                                                <div class="col py-3">
+                                                            <h6><span class="fw-bold">@service.Destination</span> <span
+                                                            class="text-secondary">@service.Destination</span></h6>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- Seat class & details -->
-                                    <div class="col pt-3">
-                                        <div class="row row-cols-2">
-                                            <!-- Seat class -->
-                                            <div class="col d-flex align-items-center">
-                                                <h6 class="border border-dark rounded-pill px-1 py-1 my-0">@service.CabinClass</h6>
-                                            </div>
-                                            <!-- Details -->
-                                            @* There's no time to implement this extra. *@
-                                            @* <div class="col d-flex justify-content-end">
-                                                <button class="btn">
+                                        <!-- Seat class & details -->
+                                <div class="col pt-3">
+                                            <div class="row row-cols-2">
+                                                <!-- Seat class -->
+                                        <div class="col d-flex align-items-center">
+                                                    <h6 class="border border-dark rounded-pill px-1 py-1 my-0">
+                                                        @service.CabinClass</h6>
+                                                </div>
+                                                <!-- Details -->
+                                                @* There's no time to implement this extra. *@
+                                                @* <div class="col d-flex justify-content-end">
+                                                    <button class="btn">
                                                     <span class="my-icon-more"></span>
                                                     Show details
-                                                </button>
-                                            </div> *@
+                                                    </button>
+                                                    </div> *@
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Price and Book -->
-                            <div class="col col-lg-3">
-                                <div class="row row-cols-2 h-100 row-cols-lg-1 flex-lg-column">
-                                    <!-- Price -->
-                                    <div class="col d-flex justify-content-center align-items-center flex-lg-grow-1">
-                                        <h6 class="my-0">₱ @service.Price</h6>
+                                <!-- Price and Book -->
+                        <div class="col col-lg-3">
+                                    <div class="row row-cols-2 h-100 row-cols-lg-1 flex-lg-column">
+                                        <!-- Price -->
+                                <div class="col d-flex justify-content-center align-items-center flex-lg-grow-1">
+                                            <h6 class="my-0">₱ @service.Price</h6>
+                                        </div>
+                                        <!-- To Book -->
+                                <form class="col d-flex justify-content-center" asp-page-handler="book" method="POST">
+                                            <button class="btn border rounded bg-secondary-cs text-white flex-fill"
+                                        type="submit" value="@service.FsId" name="FS_ID">
+                                                Book
+                                            </button>
+                                        </form>
                                     </div>
-                                    <!-- To Book -->
-                                    <form class="col d-flex justify-content-center" asp-page-handler="book" method="POST">
-                                        <button class="btn border rounded bg-secondary-cs text-white flex-fill"
-                                            type="submit" value="@service.FsId" name="FS_ID">
-                                            Book
-                                        </button>
-                                    </form>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    }
+                }
+                else
+                {
+                    <p>Sorry, there are no current flight services for your query.</p>
                 }
             </div>
         </div>
 
     </div>
 </main>
+
+<!-- Modal for selecting origin place -->
+<div class="modal fade" tabindex="-1" id="origins">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Available origins</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                @foreach (var origin in Model.Origins)
+                {
+                    <button type="type" class="btn bg-secondary-cs border text-white" data-bs-dismiss="modal"
+                    onclick="setOriginLocation('@origin')">
+                        @origin
+                    </button>
+                }
+            </div>
+
+            <!-- Cancel button -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for selecting destination place -->
+<div class="modal fade" tabindex="-1" id="destinations">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Available destinations</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                @foreach (var destination in Model.Destinations)
+                {
+                    <button type="type" class="btn bg-secondary-cs border text-white" data-bs-dismiss="modal"
+                    onclick="setDestinationLocation('@destination')">
+                        @destination
+                    </button>
+                }
+            </div>
+
+            <!-- Cancel and Done buttons -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Modal for no. of passengers and bags -->
 <div class="modal fade" tabindex="-1" id="exampleModal">

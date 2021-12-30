@@ -24,11 +24,22 @@ namespace OTA.Pages
 
         public List<Model.FlightService> FlightServices;
 
+        public List<string> Origins { get; private set; }
+
+        public List<string> Destinations { get; private set; }
+
         public PassengersService passengersService = new PassengersService();
 
         public SecondProcessPageModel(OTADBContext context)
         {
             this._context = context;
+        }
+
+        public void OnGet()
+        {
+            this.Origins =  this._context.GetOrigins();
+
+            this.Destinations = this._context.GetDestinations();
         }
 
         /// <summary>
@@ -39,27 +50,31 @@ namespace OTA.Pages
         /// </param>
         /// <param name="trip_type">Is a param key of a form field for Fare type.</param>
         /// <param name="cabin_class">Is a param key of a form field for Cabin class.</param>
-        /// <param name="from">Is a param key of a form field for Origin.</param>
-        /// <param name="to">Is a param key of a form field for Destination.</param>
-        /// <param name="departure">Is a param key of a form field for departure schedule.</param>
-        /// <param name="return">Is a param key of a form field for return schedule.</param>
+        /// <param name="origin">Is a param key of a form field for Origin.</param>
+        /// <param name="destination">Is a param key of a form field for Destination.</param>
         /// <returns>The page of this page model.</returns>
         public IActionResult OnGetQuery(string isQuery, string trip_type, string cabin_class,
-            string from, string to, string departure, string @return)
+            string origin, string destination)
         {
+            this.Origins =  this._context.GetOrigins();
+
+            this.Destinations = this._context.GetDestinations();
+
             if (isQuery != null && isQuery.Equals("true"))
             {
                 this.passengersService.NumberOfPassenger = 
                     new NumberOfPassenger(this.Adult, this.Child, this.Infant);
 
                 TempData["NumberOfPassenger"] = JsonSerializer.Serialize(this.passengersService.NumberOfPassenger);
+
+                this.FlightServices = this._context.GetFlightServices(this.passengersService.NumberOfPassenger.GetTotal(), origin, destination, trip_type, cabin_class);
             }
             else
             {
-                var strNumberOfPassenger = TempData["NumberOfPassenger"] as string;
+                var strNumberOfPassenger = TempData.Peek("NumberOfPassenger") as string;
                 var NumberOfPassenger = JsonSerializer.Deserialize<NumberOfPassenger>(strNumberOfPassenger);
 
-                this.FlightServices = this._context.GetFlightServices(NumberOfPassenger.GetTotal(), from, to, trip_type, cabin_class);
+                this.FlightServices = this._context.GetFlightServices(NumberOfPassenger.GetTotal(), origin, destination, trip_type, cabin_class);
             }
                 
             return Page();
@@ -69,7 +84,7 @@ namespace OTA.Pages
         {
             // Gets the query from either the landing page or the second page.
             // The NOP abbreviation in the identifiers means number of passenger.
-            var strNOP = TempData["NumberOfPassenger"] as string;
+            var strNOP = TempData.Peek("NumberOfPassenger") as string;
             var NOP = JsonSerializer.Deserialize<NumberOfPassenger>(strNOP);
             
             // Gets the chosen service in the DB using PK.

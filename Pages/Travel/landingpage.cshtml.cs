@@ -57,8 +57,7 @@ namespace OTA.Pages
             Background = "../misc/images/as_backgrounds/japan.jpg";
         }
 
-        public IActionResult OnGetResults(string trip_type, string cabin_class,
-            string from, string to, string departure)
+        public IActionResult OnGetResults(string trip_type, string cabin_class, string departure)
         {
             this.numberOfPassenger = new NumberOfPassenger(this.Adult, this.Child, this.Infant);
 
@@ -70,8 +69,8 @@ namespace OTA.Pages
                 {
                     trip_type = trip_type,
                     cabin_class = cabin_class,
-                    from = from,
-                    to = to,
+                    origin = this.Origin,
+                    destination = this.Destination,
                     departure = departure
                 });
         }
