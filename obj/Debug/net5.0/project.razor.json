@@ -15629,11 +15629,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Earth Jan\\Documents\\Git\\Repos\\online-travel-agency\\Pages\\Travel\\Testing\\landingpage.cshtml",
-      "TargetPath": "Pages\\Travel\\Testing\\landingpage.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\Earth Jan\\Documents\\Git\\Repos\\online-travel-agency\\Pages\\index.cshtml",
       "TargetPath": "Pages\\index.cshtml",
       "FileKind": "mvc"

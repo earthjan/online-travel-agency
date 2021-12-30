@@ -2,14 +2,40 @@
 @model OTA.Pages.IndexPageModel;
 
 <div class="bg-sample">
-    <h1 class="display-3">Welcome to Northwind!</h1>
+    @{
+        @* //test 1
+        int[] totalPassengersT1 = {1, 15, 5};
+        string[] originT1 = {"origin_test_7", "origin_test_9", "origin_test_31"};
+        string[] destinationT1 = {"destination_test_7", "destination_test_9", "destination_test_31"};
+        string[] tripTypeT1 = {"Return", "Return", "Return"};
+        string[] cabinClassT1 = {"Economy", "Economy", "Economy"};
 
-    <p class="lead">We supply products to our customers.</p>
+        //expected to have 1, 27, & 28 flight services.
+        var flightServices1 = Model.context.GetFlightServices(totalPassengersT1[0], originT1[0], destinationT1[0], tripTypeT1[0], cabinClassT1[0]);
 
-    <hr />
+        //expected to have 3, 29, & 30 flight services.
+        var flightServices2 = Model.context.GetFlightServices(totalPassengersT1[1], originT1[1], destinationT1[1], tripTypeT1[1], cabinClassT1[1]);
 
-    <p>It's @Model.DayName! Our customers include restaurants, hotels, and cruise lines.</p>
-    <p> 
-        <a class="btn btn-primary" href="suppliers"> Learn more about our suppliers</a> 
-    </p>
+         //expected to have 25 flight service
+        var flightServices3 = Model.context.GetFlightServices(totalPassengersT1[2], originT1[2], destinationT1[2], tripTypeT1[2], cabinClassT1[2]); *@
+    }
+@* 
+    <h1>flightServices1</h1>
+    @foreach (var fs in flightServices1)
+    {
+        <p>@fs.FsId</p>
+    }
+
+    <h1>flightServices2</h1>
+    @foreach (var fs in flightServices2)
+    {
+        <p>@fs.FsId</p>
+    }
+
+    <h1>flightServices3</h1>
+    @foreach (var fs in flightServices3)
+    {
+        <p>@fs.FsId</p>
+    } *@
+
 </div>

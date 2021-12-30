@@ -1,16 +1,16 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using OTA.Model;
 using System;
+using System.Collections.Generic;
 
 namespace OTA.Pages
 {
     public class IndexPageModel : PageModel
     {
-        public string DayName 
-        { 
-            get => DateTime.Now.ToString("dddd");
-            private set {}
+        public void OnGet()
+        {
+            
         }
-        
     }
     
 }

@@ -221,14 +221,37 @@ namespace OTA.Model
             }
         }
 
-        public static List<FlightService> GetFlightServices()
-        {
-            using (var db = new OTADBContext())
-            {
-                var newTuple = db.FlightServices.ToList();
+        /// <summary>
+        /// Gets a set of flight services based on the parameters.
+        /// </summary>
+        /// <param name="totalPassengers">Is the total of passengers in a book.</param>
+        /// <param name="origin">Is the origin of a book.</param>
+        /// <param name="destination">Is the destination of a book.</param>
+        /// <param name="tripType">Is the trip type of a book.</param>
+        /// <param name="cabinClass">Is the cabin class of a book.</param>
+        /// <returns>A set of queried flight services.</returns>
+        public List<FlightService> GetFlightServices(int totalPassengers, string origin, string destination, string tripType, string cabinClass)
+        {   
+            string table = "flight_service";
+            string tripTypeCol = "trip_type";
+            string cabinClassCol = "cabin_class";
+            string originCol = "origin";
+            string destinationCol = "destination";
+            string noOfBookedPassengersCol = "no_of_booked_passengers";
+            string maxPassengersCol = "max_passengers";
 
-                return newTuple;
-            }
+            var preResults = this.FlightServices.FromSqlRaw($"SELECT * FROM {table} WHERE {noOfBookedPassengersCol} < {maxPassengersCol} AND {tripTypeCol} = '{tripType}' AND {cabinClassCol} = '{cabinClass}' AND {originCol} = '{origin}' AND {destinationCol} = '{destination}'").ToList();
+
+            var finalResult = new List<FlightService>();
+
+            preResults.ForEach(flightService => {
+                var availableSeats = flightService.MaxPassengers - flightService.NoOfBookedPassengers;
+
+                if(availableSeats >= totalPassengers)  
+                    finalResult.Add(flightService);
+            });
+
+            return finalResult;
         }
     
         /// <summary>
@@ -398,9 +421,5 @@ namespace OTA.Model
                 return (affected == 1);
             }
         }
-
-
-
-
     }
 }

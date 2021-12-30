@@ -11,43 +11,55 @@ namespace OTA.Pages
 {
     public class SecondProcessPageModel : PageModel
     {
+        private readonly OTADBContext _context;
+
         [BindProperty(SupportsGet = true)]
         public string Adult { get; set; }
+
         [BindProperty(SupportsGet = true)]
         public string Child { get; set; }
+
         [BindProperty(SupportsGet = true)]
         public string Infant { get; set; }
+
         public List<Model.FlightService> FlightServices;
+
         public PassengersService passengersService = new PassengersService();
+
+        public SecondProcessPageModel(OTADBContext context)
+        {
+            this._context = context;
+        }
 
         /// <summary>
         /// Gets either from the homepage or this PageModel's page the user query for a service.
         /// </summary>
-        /// <param name="isQuery">A param key from this PageModel's page form that indicates that a user is trying to query again another service by having the param value 'true'. <br/>
+        /// <param name="isQuery">Is a param key from this PageModel's page form that indicates that a user is trying to query again another service by having the param value 'true'. <br/>
         /// Helps to differentiate the query of this page against the one from the homepage.
         /// </param>
-        /// <param name="trip_type">A param key of a form field for Fare type.</param>
-        /// <param name="cabin_class">A param key of a form field for Cabin class.</param>
-        /// <param name="from">A param key of a form field for Origin.</param>
-        /// <param name="to">A param key of a form field for Destination.</param>
-        /// <param name="departure">A param key of a form field for departure schedule.</param>
-        /// <param name="return">A param key of a form field for return schedule.</param>
-        /// <returns></returns>
+        /// <param name="trip_type">Is a param key of a form field for Fare type.</param>
+        /// <param name="cabin_class">Is a param key of a form field for Cabin class.</param>
+        /// <param name="from">Is a param key of a form field for Origin.</param>
+        /// <param name="to">Is a param key of a form field for Destination.</param>
+        /// <param name="departure">Is a param key of a form field for departure schedule.</param>
+        /// <param name="return">Is a param key of a form field for return schedule.</param>
+        /// <returns>The page of this page model.</returns>
         public IActionResult OnGetQuery(string isQuery, string trip_type, string cabin_class,
             string from, string to, string departure, string @return)
         {
-            // This is just a simulation on how search flight services from the model and how to display them.
-            this.FlightServices = OTADBContext.GetFlightServices();
-
-            // Checks if the customer queries again a service by using the one in the second page.
-            // If the customer does, the TempData that holds the query from the landing page is changed
-            // so it will hold the new query done in the second page.
             if (isQuery != null && isQuery.Equals("true"))
             {
                 this.passengersService.NumberOfPassenger = 
                     new NumberOfPassenger(this.Adult, this.Child, this.Infant);
 
                 TempData["NumberOfPassenger"] = JsonSerializer.Serialize(this.passengersService.NumberOfPassenger);
+            }
+            else
+            {
+                var strNumberOfPassenger = TempData["NumberOfPassenger"] as string;
+                var NumberOfPassenger = JsonSerializer.Deserialize<NumberOfPassenger>(strNumberOfPassenger);
+
+                this.FlightServices = this._context.GetFlightServices(NumberOfPassenger.GetTotal(), from, to, trip_type, cabin_class);
             }
                 
             return Page();
