@@ -40,6 +40,8 @@ namespace OTA.Pages
             this.Origins =  this._context.GetOrigins();
 
             this.Destinations = this._context.GetDestinations();
+
+            this.FlightServices = new List<Model.FlightService>();
         }
 
         /// <summary>

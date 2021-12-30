@@ -16,29 +16,30 @@ namespace OTA.Pages
         // private BookingInfo bookingInfo;
         public PassengersService PassengersService;
 
+        /// <summary>
+        /// Gets the number of passengers and the chosen service from the second process to give an appropriate number of forms and display the service on this pagemodel's page.
+        /// </summary>
         public void OnGetForm()
         {
-            // Gets TempData["PassengersService"] to display appropriate values.
-            var strPassengersService = TempData["PassengersService"] as string;
+            var strPassengersService = TempData.Peek("PassengersService") as string;
             var passengersService = JsonSerializer.Deserialize<PassengersService>(strPassengersService);
-
-            // Lets this controller's page access some data in the PassengersService 
-            // given by SecondProcessPageModel.
+            
             this.PassengersService = passengersService;
-
-            // Lets OnPostBook() access the PassengersService 
-            // given by SecondProcessPageModel.
-            TempData["PassengersService"] = JsonSerializer.Serialize(this.PassengersService);
         }
 
-        public IActionResult OnPostBook(int total)
+        public IActionResult OnPostBook()
         {
+            var strPassengersService = TempData.Peek("PassengersService") as string;
+            var passengersService = JsonSerializer.Deserialize<PassengersService>(strPassengersService);
+
+            var totalPassenger = passengersService.NumberOfPassenger.GetTotal();
+
             var passengers = new List<Passenger>();
 
             // Processes each passenger form section.
             // Creates the passenger collection to be able to 
             // construct BookingInfo.
-            for (int i = 0; i < total; i++)
+            for (int i = 0; i < totalPassenger; i++)
             {
                 string givenName = "given_name" + i,
                         surname = "surname" + i,
@@ -67,11 +68,6 @@ namespace OTA.Pages
 
                 passengers.Add(passenger);
             }
-
-            // Gets TempData["PassengersService"] to get the chosen service to be able
-            // to construct BookingInfo.
-            var strPassengersService = TempData["PassengersService"] as string;
-            var passengersService = JsonSerializer.Deserialize<PassengersService>(strPassengersService);
 
             // These two data were fields of BookingInfo, but there are conflicts so they were isolated.
             TempData["Passengers"] = JsonSerializer.Serialize(passengers);

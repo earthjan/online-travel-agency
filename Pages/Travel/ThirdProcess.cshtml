@@ -7,9 +7,9 @@
         <!-- Title -->
         <div class="col py-3 pt-lg-5 col-lg-9">
             <div class="container-sm">
-                <span class="my-fs-xxlarge fw-bold">@Model.PassengersService.ChosenService.Origin</span> <!-- dynamic value -->
+                <span class="my-fs-xxlarge fw-bold">@Model.PassengersService.ChosenService.Origin</span> 
                 <span class="my-fs-xxlarge">→</span>
-                <span class="my-fs-xxlarge fw-bold">@Model.PassengersService.ChosenService.Destination and back</span> <!-- "tokyo" is a dynamic value -->
+                <span class="my-fs-xxlarge fw-bold">@Model.PassengersService.ChosenService.Destination</span> 
             </div>
         </div>
         <!-- Flight details -->
@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-5 px-0 d-flex">
                                 <h6 class="align-self-stretch border border-dark rounded-pill px-1 my-0">
-                                    2 stops</h6>
+                                    1 stops</h6>
                             </div>
                         </div>
                         <!-- Departure schedule -->
@@ -80,69 +80,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Arrival -->
-                    <div class="col pt-3 border-bottom">
-                        <!-- Arrival title -->
-                        <div class="row justify-content-center pb-3">
-                            <div class="col-5 px-0">
-                                <h6 class="text-end">Arrival</h6>
-                            </div>
-                            <div class="col-2 px-0 d-flex justify-content-center">
-                                <h6>:</h6>
-                            </div>
-                            <div class="col-5 px-0 d-flex">
-                                <h6 class="align-self-stretch border border-dark rounded-pill px-1 my-0">
-                                    2 stops</h6>
-                            </div>
-                        </div>
-                        <!-- Arrival schedule -->
-                        <div class="row row-cols-3 border-primary">
-                            <!-- From schedule -->
-                            <div class="col d-flex justify-content-center">
-                                <div class="row row-cols-auto flex-column">
-                                    <!-- Day and date -->
-                                    <div class="col">
-                                        <h6 class="fw-bold mb-0">@Model.PassengersService.ChosenService.ArrivalSchedule</h6>
-                                    </div>
-                                    <!-- Time -->
-                                    <div class="col">
-                                        <h6>@Model.PassengersService.ChosenService.ArrivalSchedule</h6>
-                                    </div>
-                                    <!-- Location -->
-                                    <div class="col py-3">
-                                        <h6><span class="fw-bold">@Model.PassengersService.ChosenService.Destination</span> 
-                                        <span class="text-secondary">@Model.PassengersService.ChosenService.Destination</span>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Flight duration -->
-                            <div class="col d-flex flex-column justify-content-center align-items-center">
-                                <span class="fs-1 my-icon-from_to_flight"></span>
-                                <span>@Model.PassengersService.ChosenService.Duration</span>
-                            </div>
-                            <!-- To schedule -->
-                            <div class="col d-flex justify-content-center">
-                                <div class="row row-cols-auto flex-column">
-                                    <!-- Day and date -->
-                                    <div class="col">
-                                        <h6 class="fw-bold mb-0">@Model.PassengersService.ChosenService.DepartureSchedule</h6>
-                                    </div>
-                                    <!-- Time -->
-                                    <div class="col">
-                                        <h6>@Model.PassengersService.ChosenService.DepartureSchedule</h6>
-                                    </div>
-                                    <!-- Location -->
-                                    <div class="col py-3">
-                                        <h6>
-                                            <span class="fw-bold">@Model.PassengersService.ChosenService.Origin</span> 
-                                            <span class="text-secondary">@Model.PassengersService.ChosenService.Origin</span>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- Seat class & details -->
                     <div class="col pt-3">
                         <div class="row row-cols-2">
@@ -325,8 +263,7 @@
                 </div>
             </div>
         }
-        @* to determine the number of forms *@
-        <input type="hidden" value="@Model.PassengersService.NumberOfPassenger.GetTotal()"  name="total">
+       
         <!-- Submit button -->
         <div class="col col-lg-9">
             <div class="d-flex mt-3">
