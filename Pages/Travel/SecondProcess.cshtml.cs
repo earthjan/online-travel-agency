@@ -84,14 +84,14 @@ namespace OTA.Pages
         {
             // Gets the query from either the landing page or the second page.
             // The NOP abbreviation in the identifiers means number of passenger.
-            var strNOP = TempData.Peek("NumberOfPassenger") as string;
-            var NOP = JsonSerializer.Deserialize<NumberOfPassenger>(strNOP);
+            var strNumberOfPassenger = TempData.Peek("NumberOfPassenger") as string;
+            var NumberOfPassenger = JsonSerializer.Deserialize<NumberOfPassenger>(strNumberOfPassenger);
             
             // Gets the chosen service in the DB using PK.
             var chosenService = OTADBContext.GetFlightService(FS_ID);
 
             var passengersService = new PassengersService();
-            passengersService.NumberOfPassenger = NOP;
+            passengersService.NumberOfPassenger = NumberOfPassenger;
             passengersService.ChosenService = chosenService;
 
             TempData["PassengersService"] = JsonSerializer.Serialize(passengersService);
