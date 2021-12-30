@@ -6,7 +6,8 @@
     <!-- Booking -->
     <section class="bg-light bg-image-main d-flex align-items-center img-layout"
         style="height: 500px; background-image: url(@Model.Background);">
-        <form class="container border border-white border-sm-0 rounded-3 w-75 bg-white py-3" asp-page-handler="results" method="GET">
+        <form class="container border border-white border-sm-0 rounded-3 w-75 bg-white py-3" asp-page-handler="results"
+            method="GET">
             <!-- Trip type, seat class, no. of passenger, & bags -->
             <div class="row row-cols-1 row-cols-md-3 gy-2">
                 <!-- Trip type -->
@@ -57,15 +58,22 @@
                 <!-- From location -->
                 <div class="col-lg-4">
                     <div class="input-group flex-nowrap justify-content-center">
-                        <label class="input-group-text bg-white text-black-50" for="from">From</label>
-                        <input class="form-control" type="text" name="from" id="from" required>
+                        <button class="btn border border-secondary flex-fill text-black-50 bg-white px-3 px-md-2"
+                            type="button" data-bs-toggle="modal" data-bs-target="#origins" id="button_origin">
+                            Origin
+                        </button>
+                        <input type="hidden" name="origin" id="origin" value="null">
                     </div>
                 </div>
+
                 <!-- To location -->
                 <div class="col-lg-4">
                     <div class="input-group flex-nowrap justify-content-center">
-                        <label class="input-group-text bg-white text-black-50" for="to">To</label>
-                        <input class="form-control" type="text" name="to" id="to" required>
+                        <button class="btn border border-secondary flex-fill text-black-50 bg-white px-3 px-md-2"
+                            type="button" data-bs-toggle="modal" data-bs-target="#destinations" id="button_destination">
+                            Destination
+                        </button>
+                        <input type="hidden" name="destination" id="destination" value="null">
                     </div>
                 </div>
             </div>
@@ -76,16 +84,10 @@
                 <div class="col-md-6">
                     <div class="input-group flex-nowrap justify-content-center">
                         <label class="input-group-text bg-white text-black-50" for="departure">Departure</label>
-                        <input class="form-control" type="datetime-local" name="departure" id="departure" required>
+                        <input class="form-control" type="datetime-local" name="departure" id="departure" disabled>
                     </div>
                 </div>
-                <!-- Return schedule -->
-                <div class="col-md-6">
-                    <div class="input-group flex-nowrap justify-content-center">
-                        <label class="input-group-text bg-white text-black-50" for="return">Return</label>
-                        <input class="form-control" type="datetime-local" name="return" id="return" required>
-                    </div>
-                </div>
+        
                 <!-- Search flight button -->
                 <div class="col d-flex justify-content-center justify-content-lg-start">
                     <button class="btn border rounded bg-secondary-cs text-white" type="submit">
@@ -120,6 +122,60 @@
         </div>
         </section> *@
 </main>
+
+<!-- Modal for selecting origin place -->
+<div class="modal fade" tabindex="-1" id="origins">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Available origins</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body">
+                @foreach (var origin in Model.Origins)
+                {
+                    <button type="type" class="btn bg-secondary-cs border text-white" data-bs-dismiss="modal"
+                        onclick="setOriginLocation('@origin')">                
+                        @origin
+                    </button>
+                }
+            </div>
+        
+            <!-- Cancel button -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for selecting destination place -->
+<div class="modal fade" tabindex="-1" id="destinations">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Available destinations</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body">
+                @foreach (var destination in Model.Destinations)
+                {
+                    <button type="type" class="btn bg-secondary-cs border text-white"  data-bs-dismiss="modal"
+                        onclick="setDestinationLocation('@destination')">                
+                        @destination
+                    </button>
+                }
+            </div>
+        
+            <!-- Cancel and Done buttons -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Modal for no. of passengers and bags -->
 <div class="modal fade" tabindex="-1" id="passengers_and_bags">

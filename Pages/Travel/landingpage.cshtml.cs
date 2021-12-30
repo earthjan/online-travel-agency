@@ -63,8 +63,7 @@ namespace OTA.Pages
             this.numberOfPassenger = new NumberOfPassenger(this.Adult, this.Child, this.Infant);
 
             TempData["NumberOfPassenger"] = JsonSerializer.Serialize(this.numberOfPassenger);
-
-            // But, for now, only "from" & "to" are used as search criteria. 
+ 
             return RedirectToPage("SecondProcess",
                 "Query",
                 new
