@@ -20,7 +20,7 @@
 
     Lastly, add this `/travel/landingpage` after the port, for example `localhost:5001/travel/landingpage`.
 
-    You can now use the app.
+    You can now use the website.
 
 ## Minimum System Requirements
 
