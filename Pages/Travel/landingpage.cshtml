@@ -16,9 +16,6 @@
                         @* To be logical, the flight type is return only
                             because the requirement isn't the OTA but to use a DB. *@
                         <option selected>Return</option>
-                        @* <option>One-way</option>
-                            <option>MultiCity</option>
-                            <option>Nomad</option> *@
                     </select>
                 </div>
                 <!-- Seat class -->
@@ -27,29 +24,19 @@
                         @* To be logical, the seat class is economy only
                             because the requirement isn't the OTA but to use a DB. *@
                         <option selected>Economy</option>
-                        @* <option>Premium Economy</option>
-                            <option>Business</option>
-                            <option>First Class</option> *@
                     </select>
                 </div>
-                <!-- No. of passenger & bags -->
+                <!-- No. of passenger -->
                 <div class="col d-flex justify-content-center justify-content-md-start">
                     <button class="btn border border-secondary rounded-pill px-3 px-md-2" type="button"
                         data-bs-toggle="modal" data-bs-target="#passengers_and_bags">
                         <span class="my-icon-people fs-5"></span>
                         <span class="px-sm-1" id="passengerNumbersValue">0</span>
-                        <!-- Uncertainly commented to migrate bag form controls to the 3rd process page passenger form. -->
-                        <!-- <span class="my-icon-luggage fs-5"></span>
-                            <span class="px-sm-1" id="bagsValue">0</span> -->
                     </button>
                     <!-- No. of passenger -->
                     <input type="hidden" name="adult" id="adult" value="1">
                     <input type="hidden" name="child" id="child" value="0">
                     <input type="hidden" name="infant" id="infant" value="0">
-                    <!-- No. of bags -->
-                    <!-- Uncertainly commented to migrate bag form controls to the 3rd process page passenger form. -->
-                    <!-- <input type="hidden" name="cabin_bag" id="cabin_bag">
-                        <input type="hidden" name="checked_bag" id="checked_bag"> -->
                 </div>
             </div>
 

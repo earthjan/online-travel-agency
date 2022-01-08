@@ -53,15 +53,15 @@ namespace OTA.Pages
                         checkedBag = "checked_bag" + i;
 
                 var passenger = new Passenger(
-                    "" + Request.Form[givenName],
-                    "" + Request.Form[surname],
-                    "" + Request.Form[nationality],
+                    Utility.Remove("" + Request.Form[givenName]),
+                    Utility.Remove("" + Request.Form[surname]),
+                    Utility.Remove("" + Request.Form[nationality]),
                     "" + Request.Form[gender],
                     "" + Request.Form[dateOfBirth],
-                    "" + Request.Form[passportOrIDNumber],
+                    Utility.Remove("" + Request.Form[passportOrIDNumber]),
                     "" + Request.Form[passportOrIDExpiryDate],
-                    "" + Request.Form["email"],
-                    "" + Request.Form["phone"],
+                    Utility.CleanEmail("" + Request.Form["email"]),
+                    Utility.Remove("" + Request.Form["phone"]),
                     Int32.Parse(Request.Form[cabinBag]),
                     Int32.Parse(Request.Form[checkedBag])
                 );

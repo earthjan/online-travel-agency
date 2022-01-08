@@ -38,5 +38,20 @@ namespace OTA.Classes
 
             return sb.ToString();
         }
+
+        public static string CleanEmail(string email)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (char c in email)
+            {
+                if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '.' || c == '_' || c == '@')
+                {
+                    sb.Append(c);
+                }
+            }
+
+            return sb.ToString();
+        }
     }
 }
