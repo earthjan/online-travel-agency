@@ -26,6 +26,10 @@
                 </ol>
             </div>
             <div class="row row-cols-2 gy-3">
+                <div class="col my-fs-small">Flight Number</div>
+                <div class="col-auto my-fs-small">@Model.FlightNumber</div>
+                <div class="col my-fs-small">Airline Provider</div>
+                <div class="col-auto my-fs-small">@Model.AirlineProvider</div>
                 <div class="col my-fs-small">@Model.CheckedBagCount Checked baggage</div>
                 <div class="col-auto my-fs-small">₱ @Model.PriceInfo.CheckedBags</div>
                 <div class="col my-fs-small">@Model.CabinBagCount Cabin baggage</div>
@@ -34,6 +38,10 @@
                 <div class="col my-fs-small">₱ @Model.Fee</div>
                 <div class="col fs-2">Total price</div>
                 <div class="col fs-2">₱ @Model.PriceInfo.TotalPrice</div>
+            </div>
+            <div>
+                <span class="fw-bold">⚠ Refund Policy</span>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur consectetur vel velit vel suscipit. Nam auctor suscipit mauris. Suspendisse pulvinar felis sit amet purus accumsan mattis. Mauris quis tellus massa. Aenean ut dui at turpis vulputate ultrices vel dignissim ante. Aenean mattis vestibulum tellus vitae laoreet. Aenean faucibus erat elit, et bibendum ex sollicitudin quis. Morbi laoreet rhoncus lectus, et interdum lectus blandit sit amet. Fusce non ipsum eu augue auctor iaculis vel nec orci. Donec fringilla in quam in sollicitudin. Aliquam erat volutpat. Phasellus eget egestas ex.</div>
             </div>
             <div class="d-flex mt-2">
                 <button class="btn border rounded bg-secondary-cs text-white flex-fill" type="button"

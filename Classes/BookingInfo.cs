@@ -6,14 +6,6 @@ namespace OTA.Classes
 {
     public class BookingInfo
     {
-        //public List<Passenger> Passengers { get; set; }
-        // public FlightService ChosenService { get; set; }
-
-        // public BookingInfo(FlightService chosenService)
-        // {
-        //     this.ChosenService = chosenService;
-        // }
-
         /// <summary>
         /// Computes the total cabin bag of all passengers.
         /// </summary>
@@ -29,6 +21,7 @@ namespace OTA.Classes
 
             return cabinBagTotal;
         }
+        
         /// <summary>
         /// Computes the total checked bag of all passengers.
         /// </summary>
@@ -44,6 +37,5 @@ namespace OTA.Classes
 
             return checkedBagTotal;
         }
-
     }
 }

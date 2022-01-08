@@ -36,14 +36,16 @@ namespace OTA.Classes
         public static List<BaggagePrice> CalcBaggage(List<Passenger> passengers)
         {
             var billBaggage = new List<BaggagePrice>();
-            foreach (var passenger in passengers)
-            {
+
+            passengers.ForEach(passenger => {
                 var baggagePrice = new BaggagePrice();
+
+                baggagePrice.passenger = passenger;
                 baggagePrice.Cabin = BaggagePrice.Calc(passenger.CabinBagCount);
                 baggagePrice.Checked = BaggagePrice.Calc(passenger.CheckedBagCount);
 
                 billBaggage.Add(baggagePrice);
-            }
+            });
 
             return billBaggage;
         }

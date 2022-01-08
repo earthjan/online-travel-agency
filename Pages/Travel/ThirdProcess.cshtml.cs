@@ -7,6 +7,7 @@ using OTA.Classes;
 using OTA.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace OTA.Pages
 {
@@ -22,7 +23,7 @@ namespace OTA.Pages
         public void OnGetForm()
         {
             var strPassengersService = TempData.Peek("PassengersService") as string;
-            var passengersService = JsonSerializer.Deserialize<PassengersService>(strPassengersService);
+            var passengersService = System.Text.Json.JsonSerializer.Deserialize<PassengersService>(strPassengersService);
             
             this.PassengersService = passengersService;
         }
@@ -30,7 +31,7 @@ namespace OTA.Pages
         public IActionResult OnPostBook()
         {
             var strPassengersService = TempData.Peek("PassengersService") as string;
-            var passengersService = JsonSerializer.Deserialize<PassengersService>(strPassengersService);
+            var passengersService = System.Text.Json.JsonSerializer.Deserialize<PassengersService>(strPassengersService);
 
             var totalPassenger = passengersService.NumberOfPassenger.GetTotal();
 
@@ -51,7 +52,6 @@ namespace OTA.Pages
                         cabinBag = "cabin_bag" + i,
                         checkedBag = "checked_bag" + i;
 
-
                 var passenger = new Passenger(
                     "" + Request.Form[givenName],
                     "" + Request.Form[surname],
@@ -70,8 +70,8 @@ namespace OTA.Pages
             }
 
             // These two data were fields of BookingInfo, but there are conflicts so they were isolated.
-            TempData["Passengers"] = JsonSerializer.Serialize(passengers);
-            TempData["ChosenService"] = JsonSerializer.Serialize<Model.FlightService>(passengersService.ChosenService);
+            TempData["Passengers"] = JsonConvert.SerializeObject(passengers);
+            TempData["ChosenService"] = System.Text.Json.JsonSerializer.Serialize<Model.FlightService>(passengersService.ChosenService);
 
             return RedirectToPage("FourthProcess", "Price");
         }

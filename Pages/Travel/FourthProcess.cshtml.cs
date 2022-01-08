@@ -8,18 +8,31 @@ using OTA.Model;
 using Microsoft.AspNetCore.Mvc;
 using static Newtonsoft.Json.JsonConvert;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace OTA.Pages
 {
     public class FourthProcessPageModel : PageModel
     {
-        // I commented the BookingInfo field because only this handler method seems to access its data.
-        // private BookingInfo bookingInfo;
+        private readonly OTADBContext _context;
+
         public PriceInfo PriceInfo;
+
         public int CabinBagCount;
+
         public int CheckedBagCount;
+
+        public int FlightNumber;
+
+        public string AirlineProvider;
+
+        //isn't stored in the OTA DB because it comes from an airline provider DB.
         public string ExpirationDate = GetNextWeekDate();
+
+        //isn't stored in the OTA DB because it comes from an airline provider DB.
         public int GeneratedCode = generateCode();
+
+        //isn't stored in the OTA DB because it comes from an airline provider DB.
         public decimal Fee = 250.00M;
 
         /// <summary>
@@ -29,20 +42,24 @@ namespace OTA.Pages
         /// <returns>6-digit code</returns>
         public static int generateCode() => new Random().Next(111111, 999999);
 
-        // Continue troubleshooting the bookinginfo here while serializing
+        public FourthProcessPageModel(OTADBContext context)
+        {
+            this._context = context;
+        }
+
         public void OnGetPrice()
         {
             // Gets the TempData["Passengers"] to compute bill baggage.
-            var strPassengers = TempData["Passengers"] as string;
-            var passengers = JsonSerializer.Deserialize<List<Passenger>>(strPassengers);
+            var strPassengers = TempData.Peek("Passengers") as string;
+            var passengers = JsonConvert.DeserializeObject<List<Passenger>>(strPassengers);
 
             // Gets the TempData["ChosenService"] to compute the total price in PriceInfo.
-            var strChosenService = TempData["ChosenService"] as string;
-            var chosenService = JsonSerializer.Deserialize<Model.FlightService>(strChosenService);
+            var strChosenService = TempData.Peek("ChosenService") as string;
+            var chosenService = System.Text.Json.JsonSerializer.Deserialize<Model.FlightService>(strChosenService);
 
-            // I commented the BookingInfo field because only this handler method seems to access its data.
-            // Initializes the field.
-            // this.bookingInfo = bookingInfo;
+            this.FlightNumber = chosenService.FsId;
+
+            this.AirlineProvider = this._context.GetAirline(chosenService.AirlineCode).Name;
 
             // To display what things are billed.
             this.CabinBagCount = BookingInfo.GetCabinBagTotal(passengers);
@@ -58,75 +75,61 @@ namespace OTA.Pages
             // Processes the bill of bags of a respective passenger.
             var billBaggage = PriceInfo.CalcBaggage(passengers);
 
-            // Saves the objects as TempData so that OnPostDone() can access them to store
-            // their data in the DB.
-            TempData["BillBaggage"] = JsonSerializer.Serialize(billBaggage);
-            TempData["PriceInfo"] = JsonSerializer.Serialize(this.PriceInfo);
-            TempData["ChosenService"] = JsonSerializer.Serialize(chosenService);
-            TempData["Passengers"] = JsonSerializer.Serialize(passengers);
+            //TempData["BillBaggage"] = JsonSerializer.Serialize(billBaggage);
+            TempData["BillBaggage"] = JsonConvert.SerializeObject(billBaggage);
+            TempData["PriceInfo"] = System.Text.Json.JsonSerializer.Serialize(this.PriceInfo);
         }
 
         public IActionResult OnPostDone()
         {
-            // Gets the TempData to store the object's data in the DB.
             var strPassengers = TempData["Passengers"] as string;
-            var passengers = JsonSerializer.Deserialize<List<Passenger>>(strPassengers);
+            var passengers = System.Text.Json.JsonSerializer.Deserialize<List<Passenger>>(strPassengers);
 
-            // Gets the TempData to store the object's data in the DB.
             var strChosenService = TempData["ChosenService"] as string;
-            var chosenService = JsonSerializer.Deserialize<Model.FlightService>(strChosenService);
+            var chosenService = System.Text.Json.JsonSerializer.Deserialize<Model.FlightService>(strChosenService);
 
-            // Gets the TempData to store the object's data in the DB.
             var strBillBaggage = TempData["BillBaggage"] as string;
-            var billBaggage = JsonSerializer.Deserialize<List<BaggagePrice>>(strBillBaggage);
+            var billBaggage = JsonConvert.DeserializeObject<List<BaggagePrice>>(strBillBaggage);
 
-            // Gets the TempData to store the object's data in the DB.
             var strPriceInfo = TempData["PriceInfo"] as string;
-            var priceInfo = JsonSerializer.Deserialize<PriceInfo>(strPriceInfo);
+            var priceInfo = System.Text.Json.JsonSerializer.Deserialize<PriceInfo>(strPriceInfo);
 
-            // These are the values that should be stored in the DB.
-            WriteLine("For booked_flight_service");
             OTADBContext.InsertBookedFlightService(chosenService.FsId, DateTime.Now + "");
+
             var bookedFlightService = OTADBContext.GetNewBookedFlightService();
 
-            WriteLine("For billed_booked_flight_service");
             OTADBContext.InsertBilledBookedFlightService(bookedFlightService.BookingId, priceInfo.Method, priceInfo.TotalPrice);
-            var billedBookedFlightService = OTADBContext.GetNewBilledBookedFlightService();
 
-            WriteLine("For flight_service_passenger");
+            passengers.ForEach(passenger =>
+            {
+                OTADBContext.InsertFlightServicePassenger(
+                passenger.GivenName,
+                passenger.MiddleName,
+                passenger.Surname,
+                passenger.Gender,
+                passenger.BirthDate,
+                passenger.PassportOrIDNo,
+                passenger.PassportOrIDExpiryDate,
+                passenger.Email,
+                passenger.MobileNo);
 
-            var passenger = passengers.First();
-            OTADBContext.InsertFlightServicePassenger(
-               passenger.GivenName,
-               passenger.MiddleName,
-               passenger.Surname,
-               passenger.Gender,
-               passenger.BirthDate,
-               passenger.PassportOrIDNo,
-               passenger.PassportOrIDExpiryDate,
-               passenger.Email,
-               passenger.MobileNo);
+                var newPassenger = OTADBContext.GetNewFlightServicePassenger();
 
-            var newPassenger = OTADBContext.GetNewFlightServicePassenger();
-
-            WriteLine("For baggage_information");
-            OTADBContext.InsertBaggageInformation(
+                OTADBContext.InsertBaggageInformation(
                     newPassenger.PassengerId,
                     passenger.CabinBagCount,
                     passenger.CheckedBagCount);
 
+                var newBag = OTADBContext.GetNewBaggageInformation();
 
-            var newBag = OTADBContext.GetNewBaggageInformation();
+                var baggagePrice = billBaggage.Find(b => b.passenger == passenger);
 
-            WriteLine("For bill-baggage");
-            var baggagePrice = billBaggage.First();
-            OTADBContext.InsertBillBaggage(
-                billedBookedFlightService.BillId,
+                OTADBContext.InsertBillBaggage(
                 newBag.BiId,
                 baggagePrice.Cabin,
-                baggagePrice.Checked
-            );
-
+                baggagePrice.Checked);
+            });
+            
             return RedirectToPage("landingpage");
         }
 

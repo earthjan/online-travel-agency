@@ -52,7 +52,9 @@ namespace OTA.Model
         [Column("email")]
         [StringLength(55)]
         public string Email { get; set; }
+        [Required]
         [Column("mobile_no")]
+        [StringLength(45)]
         public string MobileNo { get; set; }
 
         [InverseProperty(nameof(BaggageInformation.Passenger))]

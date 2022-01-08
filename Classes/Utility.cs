@@ -1,6 +1,6 @@
 using System;
 
-namespace online_travel_agency.Classes
+namespace OTA.Classes
 {
     public class Utility
     {
@@ -10,5 +10,12 @@ namespace online_travel_agency.Classes
             
             return formattedDate;
         }
+
+        /// <summary>
+        /// Generates 7-digit code.
+        /// It Is mainly used as ID in the Passenger class to provide equality logic for IEquality<T>.
+        /// </summary>
+        /// <returns>7-digit code</returns>
+        public static int Generate7DigitCode() => new Random().Next(1111111, 9999999);
     }
 }

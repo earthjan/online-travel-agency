@@ -21,7 +21,7 @@ namespace OTA.Model
         [Column("method")]
         [StringLength(45)]
         public string Method { get; set; }
-        [Column("total_price", TypeName = "decimal(6,2)")]
+        [Column("total_price", TypeName = "decimal(20,2)")]
         public decimal TotalPrice { get; set; }
 
         [ForeignKey(nameof(BookingId))]
