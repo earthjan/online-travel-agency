@@ -1,13 +1,16 @@
 # Online Travel Agency
-## Configs
-### Prerequisite
-- #### Programs
+
+## Prerequisite
+
+- ### Programs
     - [MySQL 8+ Community](https://dev.mysql.com/downloads/mysql/)
     - .NET Core SDK for .NET 5
-- #### Database
+
+- ### Database
     - Import the MySQL DB using these [schemas](https://github.com/earthjan/online-travel-agency/tree/main/MySQLSchemas).
     - For the connection string, add a system variable with the name *OTA* and value *server=*(your server name)*;database=ota;user=*(your username)*;password=*(your password)
-- #### Others
+
+- ### Others
     - Have an internet connection for program's packages getting from CDN, especially for Bootstrap.
 
 ## Usage
@@ -20,9 +23,12 @@
     You can now use the app.
 
 ## Minimum System Requirements
+
 ### Processor
 - Intel(R) Core(TM) i3-5005U CPU @ 2.00GHz 2.00GHz
+
 ### RAM
 - 4GB
+
 ### System type
 - 64-bit OS, x64-based processor
