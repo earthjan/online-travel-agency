@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OTA.Model;
+using OTA.Classes;
 
 namespace OTA
 {
@@ -23,7 +24,7 @@ namespace OTA
             
             services.AddMvc();
 
-            services.AddDbContext<OTADBContext>(options => options.UseMySQL("server=localhost;database=ota;user=root;password=root"));
+            services.AddDbContext<OTADBContext>(options => options.UseMySQL(Environment.GetEnvironmentVariable(Configs.Variable, EnvironmentVariableTarget.Machine)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

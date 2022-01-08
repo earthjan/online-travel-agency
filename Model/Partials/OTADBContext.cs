@@ -1,12 +1,34 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using OTA.Classes;
 using OTA.Pages;
 
 namespace OTA.Model
 {
     public partial class OTADBContext
     {
+        private string ConnectionString = Environment.GetEnvironmentVariable(Configs.Variable, EnvironmentVariableTarget.Machine);
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            try
+            {
+                if (this.ConnectionString == null)
+                    throw new("Check your connection string.");
+
+                if (!optionsBuilder.IsConfigured)
+                {
+                    optionsBuilder.UseMySQL(this.ConnectionString);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public static List<FlightServicePassenger> GetAllFlightServicePassenger()
         {
             using (var db = new OTADBContext())
